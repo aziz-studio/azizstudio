@@ -1,0 +1,859 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Container from '../../components/ui/Container.astro';
+import Button from '../../components/ui/Button.astro';
+import Divider from '../../components/ui/Divider.astro';
+import Tag from '../../components/ui/Tag.astro';
+import { detailedProjects, type DetailedProject, getProjectById } from '../../data/projects';
+import { siteConfig } from '../../config/site';
+
+export async function getStaticPaths() {
+  return detailedProjects.map((project) => ({
+    params: { slug: project.id },
+    props: { project },
+  }));
+}
+
+interface Props {
+  project: DetailedProject;
+}
+
+const { project } = Astro.props;
+const prevProject = getProjectById(project.prevId);
+const nextProject = getProjectById(project.nextId);
+---
+
+<BaseLayout
+  title={`${project.title} — Projet | ${siteConfig.name}`}
+  description={project.summary}
+>
+  <!-- Fil d'Ariane & En-tête du projet -->
+  <article class="project-detail">
+    <header class="project-hero">
+      <Container>
+        <nav class="breadcrumb" aria-label="Fil d'Ariane">
+          <ol class="breadcrumb__list">
+            <li class="breadcrumb__item">
+              <a href="/" class="breadcrumb__link">Accueil</a>
+            </li>
+            <li class="breadcrumb__separator" aria-hidden="true">/</li>
+            <li class="breadcrumb__item">
+              <a href="/projets" class="breadcrumb__link">Projets</a>
+            </li>
+            <li class="breadcrumb__separator" aria-hidden="true">/</li>
+            <li class="breadcrumb__item breadcrumb__item--current" aria-current="page">
+              {project.title}
+            </li>
+          </ol>
+        </nav>
+
+        <div class="project-hero__content">
+          <div class="project-hero__tags">
+            <Tag label={project.nature} variant="accent" size="sm" />
+            <Tag label={project.category} variant="default" size="sm" />
+            <Tag label={project.methodOrTech} variant="default" size="sm" />
+          </div>
+
+          <h1 class="project-hero__title">{project.title}</h1>
+
+          <p class="project-hero__lead text-muted">
+            {project.summary}
+          </p>
+
+          <!-- Fiche d'identité synthétique -->
+          <div class="project-meta-grid">
+            <div class="project-meta-item">
+              <span class="project-meta-item__label">Statut</span>
+              <span class="project-meta-item__value">{project.nature}</span>
+            </div>
+            <div class="project-meta-item">
+              <span class="project-meta-item__label">Rôle</span>
+              <span class="project-meta-item__value">{project.role}</span>
+            </div>
+            <div class="project-meta-item">
+              <span class="project-meta-item__label">Période</span>
+              <span class="project-meta-item__value">{project.period}</span>
+            </div>
+            <div class="project-meta-item">
+              <span class="project-meta-item__label">Méthode &amp; Stack</span>
+              <span class="project-meta-item__value">{project.technologies.join(' · ')}</span>
+            </div>
+          </div>
+        </div>
+      </Container>
+    </header>
+
+    <Container>
+      <Divider />
+    </Container>
+
+    <!-- Visualisation schématique & Palette -->
+    <section class="section section--visual">
+      <Container>
+        <div class="project-visual-card">
+          <div class="visual-card__header">
+            <span class="visual-card__label">Composition conceptuelle &amp; Direction artistique</span>
+            <span class="visual-card__notice text-subtle">
+              {project.fullImageSrc ? "Capture réelle du projet personnel" : "Représentation schématique — Zéro capture fictive"}
+            </span>
+          </div>
+
+          {
+            project.fullImageSrc && (
+              <div class="visual-card__preview">
+                <img
+                  src={project.fullImageSrc}
+                  alt={`Aperçu de l'interface conçue pour le projet ${project.title}`}
+                  class="visual-card__image"
+                  width="1200"
+                  height="700"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            )
+          }
+
+          <div class="visual-card__canvas" aria-hidden="true">
+            <div class="canvas-monogram">
+              <span class="canvas-monogram__mark">✦</span>
+              <span class="canvas-monogram__title">{project.title}</span>
+              <span class="canvas-monogram__cat">{project.category} · {project.methodOrTech}</span>
+            </div>
+
+            <!-- Échantillons de la palette de couleurs -->
+            <div class="canvas-palette">
+              {project.artDirection.palette.map((color) => (
+                <div class="palette-swatch" style={`background-color: ${color};`} title={color}>
+                  <span class="palette-swatch__hex">{color}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </Container>
+    </section>
+
+    <!-- Contexte & Objectifs -->
+    <section class="section section--context">
+      <Container>
+        <div class="two-col-grid">
+          <div class="col-main">
+            <span class="section-eyebrow">Contexte &amp; Genèse</span>
+            <h2 class="section-title">L'intention derrière ce projet.</h2>
+            <p class="section-text">
+              {project.context}
+            </p>
+          </div>
+
+          <div class="col-side">
+            <div class="objectives-card">
+              <span class="objectives-card__title">Objectifs clés</span>
+              <ul class="objectives-list">
+                {project.objectives.map((obj) => (
+                  <li class="objectives-item">
+                    <span class="objectives-item__check" aria-hidden="true">✓</span>
+                    <span>{obj}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </Container>
+    </section>
+
+    <Container>
+      <Divider />
+    </Container>
+
+    <!-- Direction artistique -->
+    <section class="section section--art-direction">
+      <Container>
+        <div class="art-direction-block">
+          <span class="section-eyebrow">Choix visuels &amp; Design</span>
+          <h2 class="section-title">Direction artistique &amp; Atmosphère.</h2>
+
+          <div class="art-details-grid">
+            <div class="art-detail-card">
+              <h3 class="art-detail-card__heading">Ambiance recherchée</h3>
+              <p class="art-detail-card__text text-muted">{project.artDirection.ambiance}</p>
+            </div>
+
+            <div class="art-detail-card">
+              <h3 class="art-detail-card__heading">Palette chromatique</h3>
+              <p class="art-detail-card__text text-muted">{project.artDirection.paletteDescription}</p>
+            </div>
+
+            <div class="art-detail-card">
+              <h3 class="art-detail-card__heading">Typographie &amp; Rythme</h3>
+              <p class="art-detail-card__text text-muted">{project.artDirection.typography}</p>
+            </div>
+          </div>
+        </div>
+      </Container>
+    </section>
+
+    <Container>
+      <Divider />
+    </Container>
+
+    <!-- Structure & Parcours -->
+    <section class="section section--structure">
+      <Container>
+        <div class="structure-block">
+          <span class="section-eyebrow">Parcours &amp; Arborescence</span>
+          <h2 class="section-title">Organisation des sections et des écrans.</h2>
+
+          <div class="structure-timeline">
+            {project.structure.map((item, index) => (
+              <div class="structure-step">
+                <div class="structure-step__number">
+                  0{index + 1}
+                </div>
+                <div class="structure-step__content">
+                  <h3 class="structure-step__title">{item.title}</h3>
+                  <p class="structure-step__desc text-muted">{item.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </Container>
+    </section>
+
+    <Container>
+      <Divider />
+    </Container>
+
+    <!-- Méthode, Contribution & Enseignements -->
+    <section class="section section--method-and-role">
+      <Container>
+        <div class="two-col-grid">
+          <div class="method-card">
+            <span class="section-eyebrow">Méthode &amp; Technologies</span>
+            <h2 class="method-card__title">Comment ce projet a été réalisé.</h2>
+            <p class="method-card__text text-muted">
+              {project.technologiesDetails}
+            </p>
+          </div>
+
+          <div class="contribution-card">
+            <span class="section-eyebrow">Contribution personnelle</span>
+            <h2 class="contribution-card__title">Ce que j'ai réalisé concrètement.</h2>
+            <p class="contribution-card__text text-muted">
+              {project.contribution}
+            </p>
+            <div class="learnings-box">
+              <span class="learnings-box__title">Enseignements tirés</span>
+              <p class="learnings-box__text text-subtle">
+                {project.learnings}
+              </p>
+            </div>
+          </div>
+        </div>
+      </Container>
+    </section>
+
+    <Container>
+      <Divider />
+    </Container>
+
+    <!-- Navigation inter-projets -->
+    <section class="section section--project-nav">
+      <Container>
+        <div class="project-nav-bar">
+          {prevProject ? (
+            <a href={`/projets/${prevProject.id}`} class="project-nav-link project-nav-link--prev">
+              <span class="project-nav-link__sub" aria-hidden="true">← Projet précédent</span>
+              <span class="project-nav-link__title">{prevProject.title}</span>
+            </a>
+          ) : (
+            <div class="project-nav-link__placeholder" />
+          )}
+
+          <div class="project-nav-bar__center">
+            <Button variant="secondary" href="/projets" size="sm">
+              Tous les projets
+            </Button>
+          </div>
+
+          {nextProject ? (
+            <a href={`/projets/${nextProject.id}`} class="project-nav-link project-nav-link--next">
+              <span class="project-nav-link__sub" aria-hidden="true">Projet suivant →</span>
+              <span class="project-nav-link__title">{nextProject.title}</span>
+            </a>
+          ) : (
+            <div class="project-nav-link__placeholder" />
+          )}
+        </div>
+      </Container>
+    </section>
+
+    <Container>
+      <Divider />
+    </Container>
+
+    <!-- CTA Contact -->
+    <section class="section section--detail-cta">
+      <Container width="narrow">
+        <div class="detail-cta-box">
+          <span class="section-eyebrow">Échange &amp; Collaboration</span>
+          <h2 class="detail-cta__title">Une approche qui vous parle ?</h2>
+          <p class="detail-cta__text text-muted">
+            Si cette démarche de conception vous correspond pour votre projet web ou vitrine, échangeons ensemble.
+          </p>
+          <div class="detail-cta__action">
+            <Button variant="primary" href="/contact" size="lg" showArrow>
+              Prendre contact
+            </Button>
+          </div>
+        </div>
+      </Container>
+    </section>
+  </article>
+</BaseLayout>
+
+<style>
+  /* --------------------------------------------------------------------------
+     Hero & Breadcrumb
+     -------------------------------------------------------------------------- */
+  .project-hero {
+    padding-top: var(--space-8);
+    padding-bottom: var(--space-6);
+  }
+
+  .breadcrumb {
+    margin-bottom: var(--space-5);
+  }
+
+  .breadcrumb__list {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: var(--fs-meta);
+  }
+
+  .breadcrumb__link {
+    color: var(--color-text-muted);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+  }
+
+  .breadcrumb__link:hover {
+    color: var(--color-accent);
+  }
+
+  .breadcrumb__separator {
+    color: var(--color-border-strong);
+  }
+
+  .breadcrumb__item--current {
+    color: var(--color-text);
+    font-weight: 500;
+  }
+
+  .project-hero__content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    max-width: 860px;
+  }
+
+  .project-hero__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  .project-hero__title {
+    font-size: var(--fs-h1);
+    line-height: var(--lh-h1);
+    color: var(--color-text);
+    margin: 0;
+  }
+
+  .project-hero__lead {
+    font-size: var(--fs-subheading);
+    line-height: 1.65;
+    margin: 0;
+  }
+
+  .project-meta-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-4);
+    margin-top: var(--space-4);
+    padding-top: var(--space-5);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .project-meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  .project-meta-item__label {
+    font-size: var(--fs-meta);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-text-subtle);
+  }
+
+  .project-meta-item__value {
+    font-size: var(--fs-small);
+    font-weight: 500;
+    color: var(--color-text);
+  }
+
+  /* --------------------------------------------------------------------------
+     Visual Card & Palette
+     -------------------------------------------------------------------------- */
+  .project-visual-card {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+  }
+
+  .visual-card__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-3) var(--space-6);
+    background-color: var(--color-surface-muted);
+    border-bottom: 1px solid var(--color-border);
+    font-size: var(--fs-meta);
+  }
+
+  .visual-card__label {
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-text-muted);
+  }
+
+  .visual-card__preview {
+    width: 100%;
+    max-height: 520px;
+    overflow: hidden;
+    border-bottom: 1px solid var(--color-border);
+    background-color: var(--color-surface-muted);
+  }
+
+  .visual-card__image {
+    width: 100%;
+    height: 100%;
+    max-height: 520px;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
+    transition: transform var(--transition-slow);
+  }
+
+  .project-visual-card:hover .visual-card__image {
+    transform: scale(1.01);
+  }
+
+  .visual-card__canvas {
+    padding: var(--space-8) var(--space-6);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-6);
+    background: linear-gradient(160deg, var(--color-surface) 0%, var(--color-surface-muted) 100%);
+  }
+
+  .canvas-monogram {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--space-2);
+  }
+
+  .canvas-monogram__mark {
+    font-size: 2rem;
+    color: var(--color-accent);
+  }
+
+  .canvas-monogram__title {
+    font-family: var(--font-display);
+    font-size: 2.2rem;
+    color: var(--color-text);
+  }
+
+  .canvas-monogram__cat {
+    font-size: var(--fs-meta);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-text-subtle);
+  }
+
+  .canvas-palette {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    justify-content: center;
+  }
+
+  .palette-swatch {
+    width: 64px;
+    height: 48px;
+    border-radius: var(--radius-sm);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow-subtle);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 4px;
+  }
+
+  .palette-swatch__hex {
+    font-size: 0.65rem;
+    font-family: monospace;
+    background-color: rgba(255, 255, 255, 0.85);
+    color: #1c1917;
+    padding: 1px 3px;
+    border-radius: 2px;
+  }
+
+  /* --------------------------------------------------------------------------
+     Sections Standards & Grille 2 colonnes
+     -------------------------------------------------------------------------- */
+  .section-eyebrow {
+    font-family: var(--font-body);
+    font-size: var(--fs-meta);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-accent);
+    display: block;
+    margin-bottom: var(--space-2);
+  }
+
+  .section-title {
+    font-size: var(--fs-h2);
+    line-height: var(--lh-h2);
+    color: var(--color-text);
+    margin: 0 0 var(--space-4) 0;
+  }
+
+  .section-text {
+    font-size: var(--fs-body);
+    line-height: 1.7;
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+
+  .two-col-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: var(--space-7);
+    align-items: flex-start;
+  }
+
+  .objectives-card {
+    background-color: var(--color-surface-muted);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-6);
+  }
+
+  .objectives-card__title {
+    font-family: var(--font-display);
+    font-size: var(--fs-h3);
+    color: var(--color-text);
+    display: block;
+    margin-bottom: var(--space-4);
+  }
+
+  .objectives-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .objectives-item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-2);
+    font-size: var(--fs-small);
+    line-height: 1.5;
+    color: var(--color-text-muted);
+  }
+
+  .objectives-item__check {
+    color: var(--color-accent);
+    font-weight: bold;
+    flex-shrink: 0;
+  }
+
+  /* --------------------------------------------------------------------------
+     Direction artistique
+     -------------------------------------------------------------------------- */
+  .art-details-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-5);
+    margin-top: var(--space-5);
+  }
+
+  .art-detail-card {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .art-detail-card__heading {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    color: var(--color-text);
+    margin: 0;
+  }
+
+  .art-detail-card__text {
+    font-size: var(--fs-small);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* --------------------------------------------------------------------------
+     Structure Timeline
+     -------------------------------------------------------------------------- */
+  .structure-timeline {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-5);
+    margin-top: var(--space-5);
+  }
+
+  .structure-step {
+    display: flex;
+    gap: var(--space-4);
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-5);
+  }
+
+  .structure-step__number {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--color-accent);
+    line-height: 1;
+    flex-shrink: 0;
+  }
+
+  .structure-step__content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  .structure-step__title {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    color: var(--color-text);
+    margin: 0;
+  }
+
+  .structure-step__desc {
+    font-size: var(--fs-small);
+    line-height: 1.55;
+    margin: 0;
+  }
+
+  /* --------------------------------------------------------------------------
+     Méthode & Contribution
+     -------------------------------------------------------------------------- */
+  .method-card,
+  .contribution-card {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .method-card__title,
+  .contribution-card__title {
+    font-size: var(--fs-h3);
+    line-height: var(--lh-h3);
+    color: var(--color-text);
+    margin: 0;
+  }
+
+  .method-card__text,
+  .contribution-card__text {
+    font-size: var(--fs-body);
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  .learnings-box {
+    margin-top: var(--space-4);
+    padding: var(--space-4);
+    background-color: var(--color-surface-muted);
+    border-left: 3px solid var(--color-accent);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  .learnings-box__title {
+    font-size: var(--fs-meta);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-accent);
+  }
+
+  .learnings-box__text {
+    font-size: var(--fs-small);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* --------------------------------------------------------------------------
+     Navigation inter-projets
+     -------------------------------------------------------------------------- */
+  .project-nav-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-4);
+  }
+
+  .project-nav-link {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    padding: var(--space-3) var(--space-4);
+    border-radius: var(--radius-sm);
+    transition: background-color var(--transition-fast);
+  }
+
+  .project-nav-link:hover {
+    background-color: var(--color-surface-muted);
+  }
+
+  .project-nav-link--next {
+    text-align: right;
+  }
+
+  .project-nav-link__sub {
+    font-size: var(--fs-meta);
+    font-weight: 500;
+    color: var(--color-accent);
+  }
+
+  .project-nav-link__title {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    color: var(--color-text);
+  }
+
+  .project-nav-link__placeholder {
+    width: 140px;
+  }
+
+  /* --------------------------------------------------------------------------
+     CTA Contact
+     -------------------------------------------------------------------------- */
+  .section--detail-cta {
+    background-color: var(--color-surface-muted);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .detail-cta-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--space-3);
+    padding-block: var(--space-4);
+  }
+
+  .detail-cta__title {
+    font-size: var(--fs-h2);
+    line-height: var(--lh-h2);
+    color: var(--color-text);
+    margin: 0;
+  }
+
+  .detail-cta__text {
+    font-size: var(--fs-subheading);
+    line-height: var(--lh-body);
+    margin: 0;
+  }
+
+  .detail-cta__action {
+    padding-top: var(--space-3);
+  }
+
+  /* --------------------------------------------------------------------------
+     Responsive
+     -------------------------------------------------------------------------- */
+  @media (max-width: 900px) {
+    .project-meta-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .two-col-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-5);
+    }
+
+    .art-details-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .structure-timeline {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 639px) {
+    .project-hero {
+      padding-top: var(--space-6);
+    }
+
+    .project-meta-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .visual-card__header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-1);
+    }
+
+    .project-nav-bar {
+      flex-direction: column;
+      align-items: stretch;
+      gap: var(--space-3);
+    }
+
+    .project-nav-link--next {
+      text-align: left;
+    }
+  }
+</style>

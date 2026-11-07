@@ -1,0 +1,241 @@
+{
+  "hero": {
+    "desktop-1920": {
+      "viewport": 1920,
+      "scrollWidth": 1905,
+      "overflow": 0,
+      "hasOldCard": false,
+      "wrapStyle": {
+        "background": "rgb(242, 239, 234)",
+        "border": "0px none rgb(36, 34, 31)",
+        "boxShadow": "none",
+        "borderRadius": "8px",
+        "width": 400,
+        "height": 500
+      },
+      "img": {
+        "renderedWidth": 400,
+        "renderedHeight": 500,
+        "aspectRatio": "0.80",
+        "naturalWidth": 800,
+        "naturalHeight": 1067,
+        "complete": true,
+        "src": "http://localhost:4321/images/aziz-studio-hero.webp"
+      }
+    },
+    "desktop-1440": {
+      "viewport": 1440,
+      "scrollWidth": 1425,
+      "overflow": 0,
+      "hasOldCard": false,
+      "wrapStyle": {
+        "background": "rgb(242, 239, 234)",
+        "border": "0px none rgb(36, 34, 31)",
+        "boxShadow": "none",
+        "borderRadius": "8px",
+        "width": 400,
+        "height": 500
+      },
+      "img": {
+        "renderedWidth": 400,
+        "renderedHeight": 500,
+        "aspectRatio": "0.80",
+        "naturalWidth": 800,
+        "naturalHeight": 1067,
+        "complete": true,
+        "src": "http://localhost:4321/images/aziz-studio-hero.webp"
+      }
+    },
+    "tablet-768": {
+      "viewport": 768,
+      "scrollWidth": 753,
+      "overflow": 0,
+      "hasOldCard": false,
+      "wrapStyle": {
+        "background": "rgb(242, 239, 234)",
+        "border": "0px none rgb(36, 34, 31)",
+        "boxShadow": "none",
+        "borderRadius": "8px",
+        "width": 340,
+        "height": 425
+      },
+      "img": {
+        "renderedWidth": 340,
+        "renderedHeight": 425,
+        "aspectRatio": "0.80",
+        "naturalWidth": 800,
+        "naturalHeight": 1067,
+        "complete": true,
+        "src": "http://localhost:4321/images/aziz-studio-hero.webp"
+      }
+    },
+    "mobile-390": {
+      "viewport": 390,
+      "scrollWidth": 390,
+      "overflow": 0,
+      "hasOldCard": false,
+      "wrapStyle": {
+        "background": "rgb(242, 239, 234)",
+        "border": "0px none rgb(36, 34, 31)",
+        "boxShadow": "none",
+        "borderRadius": "8px",
+        "width": 280,
+        "height": 350
+      },
+      "img": {
+        "renderedWidth": 280,
+        "renderedHeight": 350,
+        "aspectRatio": "0.80",
+        "naturalWidth": 800,
+        "naturalHeight": 1067,
+        "complete": true,
+        "src": "http://localhost:4321/images/aziz-studio-hero.webp"
+      }
+    },
+    "mobile-360": {
+      "viewport": 360,
+      "scrollWidth": 360,
+      "overflow": 0,
+      "hasOldCard": false,
+      "wrapStyle": {
+        "background": "rgb(242, 239, 234)",
+        "border": "0px none rgb(36, 34, 31)",
+        "boxShadow": "none",
+        "borderRadius": "8px",
+        "width": 280,
+        "height": 350
+      },
+      "img": {
+        "renderedWidth": 280,
+        "renderedHeight": 350,
+        "aspectRatio": "0.80",
+        "naturalWidth": 800,
+        "naturalHeight": 1067,
+        "complete": true,
+        "src": "http://localhost:4321/images/aziz-studio-hero.webp"
+      }
+    }
+  },
+  "about": {
+    "desktop-1920": {
+      "viewport": 1920,
+      "scrollWidth": 1905,
+      "overflow": 0,
+      "hasOldCard": false,
+      "captionText": "Aziz — Concepteur web indépendant",
+      "wrapStyle": {
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(36, 34, 31)",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "width": 360,
+        "height": 495
+      },
+      "img": {
+        "renderedWidth": 360,
+        "renderedHeight": 450,
+        "aspectRatio": "0.80",
+        "naturalWidth": 800,
+        "naturalHeight": 1067,
+        "complete": true,
+        "src": "http://localhost:4321/images/aziz-studio-hero.webp"
+      }
+    },
+    "desktop-1440": {
+      "viewport": 1440,
+      "scrollWidth": 1425,
+      "overflow": 0,
+      "hasOldCard": false,
+      "captionText": "Aziz — Concepteur web indépendant",
+      "wrapStyle": {
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(36, 34, 31)",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "width": 360,
+        "height": 495
+      },
+      "img": {
+        "renderedWidth": 360,
+        "renderedHeight": 450,
+        "aspectRatio": "0.80",
+        "naturalWidth": 800,
+        "naturalHeight": 1067,
+        "complete": true,
+        "src": "http://localhost:4321/images/aziz-studio-hero.webp"
+      }
+    },
+    "tablet-768": {
+      "viewport": 768,
+      "scrollWidth": 753,
+      "overflow": 0,
+      "hasOldCard": false,
+      "captionText": "Aziz — Concepteur web indépendant",
+      "wrapStyle": {
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(36, 34, 31)",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "width": 320,
+        "height": 445
+      },
+      "img": {
+        "renderedWidth": 320,
+        "renderedHeight": 400,
+        "aspectRatio": "0.80",
+        "naturalWidth": 800,
+        "naturalHeight": 1067,
+        "complete": true,
+        "src": "http://localhost:4321/images/aziz-studio-hero.webp"
+      }
+    },
+    "mobile-390": {
+      "viewport": 390,
+      "scrollWidth": 390,
+      "overflow": 0,
+      "hasOldCard": false,
+      "captionText": "Aziz — Concepteur web indépendant",
+      "wrapStyle": {
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(36, 34, 31)",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "width": 280,
+        "height": 395
+      },
+      "img": {
+        "renderedWidth": 280,
+        "renderedHeight": 350,
+        "aspectRatio": "0.80",
+        "naturalWidth": 800,
+        "naturalHeight": 1067,
+        "complete": true,
+        "src": "http://localhost:4321/images/aziz-studio-hero.webp"
+      }
+    },
+    "mobile-360": {
+      "viewport": 360,
+      "scrollWidth": 360,
+      "overflow": 0,
+      "hasOldCard": false,
+      "captionText": "Aziz — Concepteur web indépendant",
+      "wrapStyle": {
+        "background": "rgba(0, 0, 0, 0)",
+        "border": "0px none rgb(36, 34, 31)",
+        "boxShadow": "none",
+        "borderRadius": "0px",
+        "width": 280,
+        "height": 395
+      },
+      "img": {
+        "renderedWidth": 280,
+        "renderedHeight": 350,
+        "aspectRatio": "0.80",
+        "naturalWidth": 800,
+        "naturalHeight": 1067,
+        "complete": true,
+        "src": "http://localhost:4321/images/aziz-studio-hero.webp"
+      }
+    }
+  }
+}

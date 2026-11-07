@@ -1,0 +1,77 @@
+---
+interface Props {
+  orientation?: 'horizontal' | 'vertical';
+  space?: 'none' | 'sm' | 'md' | 'lg';
+  class?: string;
+  [key: string]: any;
+}
+
+const {
+  orientation = 'horizontal',
+  space = 'none',
+  class: className = '',
+  ...rest
+} = Astro.props;
+---
+
+<div
+  role="separator"
+  aria-orientation={orientation}
+  class:list={[
+    'divider',
+    `divider--${orientation}`,
+    `divider--space-${space}`,
+    className,
+  ]}
+  {...rest}
+>
+</div>
+
+<style>
+  .divider {
+    background-color: var(--color-border);
+    flex-shrink: 0;
+  }
+
+  .divider--horizontal {
+    width: 100%;
+    height: 1px;
+    border: none;
+    margin: 0;
+  }
+
+  .divider--vertical {
+    width: 1px;
+    height: 100%;
+    min-height: 1.5rem;
+    align-self: stretch;
+    border: none;
+    margin: 0;
+  }
+
+  /* Espacements verticaux pour l'orientation horizontale */
+  .divider--horizontal.divider--space-sm {
+    margin-block: var(--space-4);
+  }
+
+  .divider--horizontal.divider--space-md {
+    margin-block: var(--space-6);
+  }
+
+  .divider--horizontal.divider--space-lg {
+    margin-block: var(--space-8);
+  }
+
+  /* Espacements horizontaux pour l'orientation verticale */
+  .divider--vertical.divider--space-sm {
+    margin-inline: var(--space-3);
+  }
+
+  .divider--vertical.divider--space-md {
+    margin-inline: var(--space-5);
+  }
+
+  .divider--vertical.divider--space-lg {
+    margin-inline: var(--space-7);
+  }
+</style>

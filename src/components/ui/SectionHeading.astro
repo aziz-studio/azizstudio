@@ -1,0 +1,79 @@
+---
+interface Props {
+  title: string;
+  eyebrow?: string;
+  description?: string;
+  align?: 'left' | 'center';
+  level?: 1 | 2 | 3;
+  class?: string;
+}
+
+const {
+  title,
+  eyebrow,
+  description,
+  align = 'left',
+  level = 2,
+  class: className = '',
+} = Astro.props;
+
+const HeadingTag = `h${level}` as 'h1' | 'h2' | 'h3';
+---
+
+<header class:list={['section-heading', `section-heading--${align}`, className]}>
+  {eyebrow && <span class="section-heading__eyebrow">{eyebrow}</span>}
+  <HeadingTag class="section-heading__title">{title}</HeadingTag>
+  {description && <p class="section-heading__description">{description}</p>}
+  <slot />
+</header>
+
+<style>
+  .section-heading {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    margin-bottom: var(--space-7);
+  }
+
+  .section-heading--left {
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .section-heading--center {
+    align-items: center;
+    text-align: center;
+    margin-inline: auto;
+  }
+
+  .section-heading__eyebrow {
+    display: inline-block;
+    font-family: var(--font-body);
+    font-size: var(--fs-meta);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-accent);
+  }
+
+  .section-heading__title {
+    font-family: var(--font-display);
+    color: var(--color-text);
+    margin: 0;
+  }
+
+  .section-heading__description {
+    font-size: var(--fs-body);
+    line-height: var(--lh-body);
+    color: var(--color-text-muted);
+    max-width: var(--text-max-width);
+    margin: 0;
+  }
+
+  @media (max-width: 767px) {
+    .section-heading {
+      margin-bottom: var(--space-5);
+      gap: var(--space-2);
+    }
+  }
+</style>

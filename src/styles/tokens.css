@@ -1,0 +1,94 @@
+/* ==========================================================================
+   AZIZ STUDIO — DESIGN SYSTEM TOKENS (Phase 2)
+   Direction artistique : Minimalisme chaleureux — palette discrète — ambiance claire
+   ========================================================================== */
+
+:root {
+  /* ------------------------------------------------------------------------
+     1. Palette de couleurs — Thème clair exclusif
+     ------------------------------------------------------------------------ */
+  --color-bg: #FAF8F5;              /* Fond principal (blanc cassé chaud) */
+  --color-surface: #FFFFFF;         /* Surface des composants et cartes */
+  --color-surface-muted: #F2EFEA;   /* Surface secondaire douce */
+  --color-text: #24221F;            /* Texte principal (noir doux chaleureux) */
+  --color-text-muted: #666059;      /* Texte secondaire (gris chaud avec contraste WCAG AA 5.5:1) */
+  --color-text-subtle: #6C665F;     /* Métadonnées et notes discrètes (contraste WCAG AA 5.3:1) */
+  --color-border: #E6E0D8;          /* Bordures et séparateurs fins */
+  --color-border-strong: #D2C9BF;   /* Bordures renforcées et états actifs */
+  --color-accent: #995843;          /* Accent principal (terracotta sobre contrasté WCAG AA 5.2:1) */
+  --color-accent-hover: #7E4330;    /* Accent au survol */
+  --color-accent-soft: #F1E7E0;     /* Fond d'accent léger pour badges/surbrillances */
+  --color-on-accent: #FFFFFF;       /* Texte contrasté sur fond accent */
+
+  /* ------------------------------------------------------------------------
+     2. Typographie
+     ------------------------------------------------------------------------ */
+  --font-display: 'Instrument Serif', Georgia, serif;
+  --font-body: 'Geist Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Échelle typographique fluide (clamp) */
+  --fs-display: clamp(3.5rem, 7vw, 7rem);            /* Grand titre principal */
+  --fs-h1: clamp(3rem, 5vw, 5.5rem);                /* Titre de page */
+  --fs-h2: clamp(2.25rem, 3.5vw, 3.5rem);           /* Titre de section */
+  --fs-h3: clamp(1.5rem, 2vw, 2rem);                /* Titre de composant / carte */
+  --fs-subheading: clamp(1.125rem, 1.5vw, 1.375rem);/* Sous-titre éditorial */
+  --fs-body: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);/* Corps de texte courant */
+  --fs-small: clamp(0.875rem, 0.85rem + 0.1vw, 0.95rem); /* Texte secondaire / navigation */
+  --fs-meta: clamp(0.75rem, 0.72rem + 0.1vw, 0.85rem);  /* Métadonnées / badges */
+
+  /* Hauteurs de ligne (Line Heights) */
+  --lh-display: 1.02;
+  --lh-h1: 1.05;
+  --lh-h2: 1.15;
+  --lh-h3: 1.25;
+  --lh-body: 1.65;
+  --lh-tight: 1.2;
+
+  /* Longueur maximale de ligne pour lecture confortable (65 à 75 caractères) */
+  --text-max-width: 68ch;
+
+  /* ------------------------------------------------------------------------
+     3. Espacements & Dimensions (multiples de 4 / 8px)
+     ------------------------------------------------------------------------ */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 80px;
+  --space-10: 112px;
+  --space-11: 144px;
+
+  /* Espacement fluide des grandes sections */
+  --section-space: clamp(3.5rem, 6vw, 7.5rem); /* ~56px sur mobile à 120px sur desktop */
+
+  /* ------------------------------------------------------------------------
+     4. Conteneur & Mise en page (Référence 1920px)
+     ------------------------------------------------------------------------ */
+  --container-max: 90rem; /* 1440px max content width */
+  --page-gutter: clamp(1.25rem, 4vw, 4.5rem); /* 20px mobile à 72px grand écran */
+  --header-height: 76px;
+
+  /* ------------------------------------------------------------------------
+     5. Bordures, Rayons et Ombres discrètes
+     ------------------------------------------------------------------------ */
+  --border-default: 1px solid var(--color-border);
+  --border-strong: 1px solid var(--color-border-strong);
+
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-pill: 999px;
+
+  --shadow-subtle: 0 2px 8px rgba(36, 34, 31, 0.04);
+  --shadow-card: 0 4px 16px rgba(36, 34, 31, 0.05);
+
+  /* ------------------------------------------------------------------------
+     6. Transitions discrètes (sans animations complexes)
+     ------------------------------------------------------------------------ */
+  --transition-fast: 150ms ease;
+  --transition-base: 220ms ease;
+}

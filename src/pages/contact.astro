@@ -1,0 +1,1150 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Container from '../components/ui/Container.astro';
+import Button from '../components/ui/Button.astro';
+import Divider from '../components/ui/Divider.astro';
+import SocialIcon from '../components/ui/SocialIcon.astro';
+import { siteConfig } from '../config/site';
+
+// Clé d'envoi Web3Forms configurée via variable d'environnement publique
+// Si non configurée ou placeholder, le formulaire indique loyalement le mode démonstration.
+const web3FormsKey = import.meta.env.PUBLIC_WEB3FORMS_KEY || '';
+---
+
+<BaseLayout
+  title={`Contact — ${siteConfig.name}`}
+  description="Contactez Aziz Studio pour échanger sur vos projets de création de site web, refonte WordPress ou structuration d'interfaces."
+>
+  <!-- =========================================================================
+       SECTION 1 — Introduction
+       ========================================================================= -->
+  <section class="contact-hero">
+    <Container>
+      <nav class="breadcrumb" aria-label="Fil d'Ariane">
+        <ol class="breadcrumb__list">
+          <li class="breadcrumb__item">
+            <a href="/" class="breadcrumb__link">Accueil</a>
+          </li>
+          <li class="breadcrumb__separator" aria-hidden="true">/</li>
+          <li class="breadcrumb__item breadcrumb__item--current" aria-current="page">
+            Contact
+          </li>
+        </ol>
+      </nav>
+
+      <div class="contact-hero__content">
+        <span class="contact-hero__eyebrow">Contact &amp; Échanges</span>
+        <h1 class="contact-hero__title">Parlons de votre projet.</h1>
+        <p class="contact-hero__lead text-muted">
+          Vous avez une idée, un projet de site web ou une proposition de collaboration ? Présentez-moi votre besoin. Je prendrai le temps de découvrir votre demande.
+        </p>
+      </div>
+    </Container>
+  </section>
+
+  <Container>
+    <Divider />
+  </Container>
+
+  <!-- =========================================================================
+       SECTION 2 — Formulaire de contact & Statut de transmission
+       ========================================================================= -->
+  <section class="section section--contact-main">
+    <Container>
+      <div class="contact-grid">
+        <!-- Colonne gauche : Formulaire de contact -->
+        <div class="contact-form-column">
+          <div class="form-card">
+            <div class="form-card__header">
+              <h2 class="form-card__title">Envoyer un message</h2>
+              <p class="form-card__subtitle text-muted">
+                Remplissez les informations ci-dessous pour présenter les grandes lignes de votre demande.
+              </p>
+            </div>
+
+            <form
+              id="contact-form"
+              class="contact-form"
+              method="POST"
+              novalidate
+              data-web3forms-key={web3FormsKey}
+            >
+              <!-- Protection antispam Honeypot (masquée aux humains) -->
+              <div class="form-honeypot" aria-hidden="true">
+                <label for="contact-bot-check">Ne pas remplir ce champ si vous êtes humain</label>
+                <input
+                  type="text"
+                  id="contact-bot-check"
+                  name="botcheck"
+                  tabindex="-1"
+                  autocomplete="off"
+                />
+              </div>
+
+              <!-- Champ Nom -->
+              <div class="form-group" id="group-name">
+                <label for="contact-name" class="form-label">
+                  Nom et prénom <span class="form-required" aria-hidden="true">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="contact-name"
+                  name="name"
+                  class="form-input"
+                  placeholder="Ex : Marie Dupont"
+                  autocomplete="name"
+                  required
+                  aria-required="true"
+                  aria-describedby="error-name"
+                />
+                <span id="error-name" class="form-error" role="alert" style="display: none;">
+                  Veuillez renseigner votre nom.
+                </span>
+              </div>
+
+              <!-- Champ Adresse e-mail -->
+              <div class="form-group" id="group-email">
+                <label for="contact-email" class="form-label">
+                  Adresse e-mail <span class="form-required" aria-hidden="true">*</span>
+                </label>
+                <input
+                  type="email"
+                  id="contact-email"
+                  name="email"
+                  class="form-input"
+                  placeholder="Ex : contact@votredomaine.fr"
+                  autocomplete="email"
+                  required
+                  aria-required="true"
+                  aria-describedby="error-email"
+                />
+                <span id="error-email" class="form-error" role="alert" style="display: none;">
+                  Veuillez renseigner une adresse e-mail valide (ex : nom@domaine.fr).
+                </span>
+              </div>
+
+              <!-- Champ Sujet -->
+              <div class="form-group" id="group-subject">
+                <label for="contact-subject" class="form-label">
+                  Sujet de votre demande <span class="form-required" aria-hidden="true">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="contact-subject"
+                  name="subject"
+                  class="form-input"
+                  placeholder="Ex : Création d'un site vitrine, refonte WordPress, conseil..."
+                  required
+                  aria-required="true"
+                  aria-describedby="error-subject"
+                />
+                <span id="error-subject" class="form-error" role="alert" style="display: none;">
+                  Veuillez indiquer le sujet de votre demande.
+                </span>
+              </div>
+
+              <!-- Champ Message -->
+              <div class="form-group" id="group-message">
+                <label for="contact-message" class="form-label">
+                  Votre message <span class="form-required" aria-hidden="true">*</span>
+                </label>
+                <textarea
+                  id="contact-message"
+                  name="message"
+                  class="form-textarea"
+                  rows="5"
+                  placeholder="Présentez les grandes lignes de votre projet, vos délais indicatifs ou vos questions..."
+                  required
+                  aria-required="true"
+                  aria-describedby="error-message"
+                ></textarea>
+                <span id="error-message" class="form-error" role="alert" style="display: none;">
+                  Veuillez rédiger votre message.
+                </span>
+              </div>
+
+              <!-- Indication de confidentialité -->
+              <div class="form-privacy-note">
+                <span class="privacy-note__icon" aria-hidden="true">🔒</span>
+                <p class="privacy-note__text text-subtle">
+                  <strong>Confidentialité :</strong> Les informations fournies sont uniquement utilisées pour répondre à votre demande. Elles ne sont ni conservées inutilement, ni partagées avec des tiers.
+                </p>
+              </div>
+
+              <!-- Bouton de soumission -->
+              <div class="form-actions">
+                <button
+                  type="submit"
+                  id="contact-submit-btn"
+                  class="btn btn--primary btn--lg"
+                >
+                  <span id="btn-text">Envoyer mon message</span>
+                  <span id="btn-arrow" class="btn__arrow" aria-hidden="true">→</span>
+                </button>
+              </div>
+
+              <!-- Zone de retours d'état de soumission (3 états stricts) -->
+              <div
+                id="submission-status"
+                class="form-status-box"
+                style="display: none;"
+                role="status"
+                aria-live="polite"
+              >
+                <!-- État 1 : En cours d'envoi -->
+                <div id="status-sending" class="status-msg status-msg--sending" style="display: none;">
+                  <span class="status-icon" aria-hidden="true">⏳</span>
+                  <div class="status-content">
+                    <strong>Transmission en cours...</strong>
+                    <p>Veuillez patienter pendant l'envoi de votre message.</p>
+                  </div>
+                </div>
+
+                <!-- État 2 : Succès (affiché UNIQUEMENT si transmission réelle réussie) -->
+                <div id="status-success" class="status-msg status-msg--success" style="display: none;">
+                  <span class="status-icon" aria-hidden="true">✓</span>
+                  <div class="status-content">
+                    <strong>Message envoyé avec succès !</strong>
+                    <p>Merci pour votre prise de contact. Je prendrai le temps d'étudier votre demande et vous répondrai dans les meilleurs délais.</p>
+                  </div>
+                </div>
+
+                <!-- État 3 : Échec / Service en attente de configuration -->
+                <div id="status-error" class="status-msg status-msg--error" style="display: none;">
+                  <span class="status-icon" aria-hidden="true">ℹ</span>
+                  <div class="status-content">
+                    <strong id="error-status-title">Formulaire en mode démonstration</strong>
+                    <p id="error-status-desc">
+                      La clé d'envoi Web3Forms (PUBLIC_WEB3FORMS_KEY) n'est pas encore configurée. Votre message n'a pas été envoyé. Vous pouvez me joindre directement via WhatsApp ou par e-mail ci-contre.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- Colonne droite : Coordonnées directes, WhatsApp & Réseaux -->
+        <div class="contact-info-column">
+          <!-- 1. Carte WhatsApp Prioritaire -->
+          <div class="info-card info-card--whatsapp">
+            <div class="info-card__header-inline">
+              <span class="info-card__tag info-card__tag--highlight">Canal privilégié · Réponse rapide</span>
+            </div>
+            <h3 class="info-card__title">Échanger sur WhatsApp</h3>
+            <p class="info-card__text text-muted">
+              Le moyen le plus simple et direct pour présenter votre projet, poser vos questions ou convenir d'un premier échange.
+            </p>
+            <a
+              href={siteConfig.whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn--whatsapp btn--full"
+              aria-label="Discuter avec Aziz sur WhatsApp (s'ouvre dans un nouvel onglet)"
+            >
+              <SocialIcon name="whatsapp" size={20} />
+              <span>Ouvrir la conversation</span>
+              <span class="btn__arrow" aria-hidden="true">→</span>
+            </a>
+            <div class="info-card__status-indicator">
+              <span class="status-dot status-dot--online"></span>
+              <span class="status-label">Ligne directe : {siteConfig.whatsappDisplay}</span>
+            </div>
+          </div>
+
+          <!-- 2. Carte Coordonnées Directes -->
+          <div class="info-card">
+            <span class="info-card__tag">Coordonnées directes</span>
+            <h3 class="info-card__title">E-mail &amp; Téléphone</h3>
+            <p class="info-card__text text-muted">
+              Vous pouvez également m'écrire par messagerie électronique ou m'appeler directement.
+            </p>
+            <ul class="contact-methods-list">
+              <li class="contact-method-item">
+                <span class="contact-method-icon" aria-hidden="true">
+                  <SocialIcon name="email" size={18} />
+                </span>
+                <div class="contact-method-content">
+                  <span class="contact-method-label">Adresse e-mail</span>
+                  <a href={`mailto:${siteConfig.email}`} class="contact-method-link">
+                    {siteConfig.email}
+                  </a>
+                </div>
+              </li>
+              <li class="contact-method-item">
+                <span class="contact-method-icon" aria-hidden="true">
+                  <SocialIcon name="phone" size={18} />
+                </span>
+                <div class="contact-method-content">
+                  <span class="contact-method-label">Téléphone direct</span>
+                  <a href={`tel:${siteConfig.phone}`} class="contact-method-link">
+                    {siteConfig.phoneDisplay}
+                  </a>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <!-- 3. Carte Réseaux sociaux officiels -->
+          <div class="info-card">
+            <span class="info-card__tag">Présence en ligne</span>
+            <h3 class="info-card__title">Réseaux officiels</h3>
+            <div class="social-links-grid">
+              {siteConfig.socials.map((social) => (
+                <a
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="social-link-card"
+                  aria-label={`${social.label} — Aziz Studio (s'ouvre dans un nouvel onglet)`}
+                >
+                  <SocialIcon name={social.icon as any} size={18} />
+                  <span class="social-link-card__label">{social.label}</span>
+                  <span class="social-link-card__arrow" aria-hidden="true">↗</span>
+                </a>
+              ))}
+            </div>
+          </div>
+
+          <!-- 4. Carte types de projets & collaborations -->
+          <div class="info-card">
+            <h3 class="info-card__title">Types de collaborations bienvenues</h3>
+            <ul class="collab-list">
+              <li class="collab-item">
+                <span class="collab-item__bullet" aria-hidden="true">✦</span>
+                <div class="collab-item__content">
+                  <strong>Sites vitrines d'indépendants &amp; activités</strong>
+                  <p class="text-muted">Des espaces clairs, chaleureux et agréables à parcourir pour valoriser votre savoir-faire.</p>
+                </div>
+              </li>
+              <li class="collab-item">
+                <span class="collab-item__bullet" aria-hidden="true">✦</span>
+                <div class="collab-item__content">
+                  <strong>Refontes WordPress soignées</strong>
+                  <p class="text-muted">Nettoyage, transition vers l'éditeur de blocs Gutenberg et optimisation de la lisibilité mobile.</p>
+                </div>
+              </li>
+              <li class="collab-item">
+                <span class="collab-item__bullet" aria-hidden="true">✦</span>
+                <div class="collab-item__content">
+                  <strong>Conception &amp; ergonomie d'interfaces</strong>
+                  <p class="text-muted">Structuration des contenus, arborescence et mise en page réfléchie pour vos utilisateurs.</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <Container>
+    <Divider />
+  </Container>
+
+  <!-- Liens d'exploration complémentaires -->
+  <section class="section section--explore">
+    <Container width="narrow">
+      <div class="explore-box">
+        <span class="section-eyebrow">Découverte</span>
+        <h2 class="explore-box__title">Poursuivre la visite d'Aziz Studio</h2>
+        <div class="explore-box__actions">
+          <Button variant="secondary" href="/projets" size="md" showArrow>
+            Découvrir mes projets
+          </Button>
+          <Button variant="secondary" href="/a-propos" size="md" showArrow>
+            En savoir plus sur ma démarche
+          </Button>
+        </div>
+      </div>
+    </Container>
+  </section>
+</BaseLayout>
+
+<script>
+  function setupContactForm() {
+    const form = document.getElementById('contact-form') as HTMLFormElement | null;
+    const submitBtn = document.getElementById('contact-submit-btn') as HTMLButtonElement | null;
+    const btnText = document.getElementById('btn-text');
+    const statusBox = document.getElementById('submission-status');
+    const statusSending = document.getElementById('status-sending');
+    const statusSuccess = document.getElementById('status-success');
+    const statusError = document.getElementById('status-error');
+    const errorTitle = document.getElementById('error-status-title');
+    const errorDesc = document.getElementById('error-status-desc');
+
+    if (!form || !submitBtn || !statusBox) return;
+    if (form.dataset.bound === 'true') return;
+    form.dataset.bound = 'true';
+
+    // Masquage initial des statuts
+    function hideAllStatus() {
+      if (statusBox) statusBox.style.display = 'none';
+      if (statusSending) statusSending.style.display = 'none';
+      if (statusSuccess) statusSuccess.style.display = 'none';
+      if (statusError) statusError.style.display = 'none';
+    }
+
+    // Validation des champs côté client
+    function validateField(id: string, errorId: string, customValidation?: (val: string) => boolean): boolean {
+      const input = document.getElementById(id) as HTMLInputElement | HTMLTextAreaElement | null;
+      const errorEl = document.getElementById(errorId);
+      if (!input || !errorEl) return true;
+
+      const val = input.value.trim();
+      let isValid = val.length > 0;
+      if (isValid && customValidation) {
+        isValid = customValidation(val);
+      }
+
+      if (!isValid) {
+        errorEl.style.display = 'block';
+        input.classList.add('is-invalid');
+        input.setAttribute('aria-invalid', 'true');
+      } else {
+        errorEl.style.display = 'none';
+        input.classList.remove('is-invalid');
+        input.removeAttribute('aria-invalid');
+      }
+
+      return isValid;
+    }
+
+    function validateEmail(val: string): boolean {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
+    }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      hideAllStatus();
+
+      // Vérification du champ pot-de-miel (antispam)
+      const botField = document.getElementById('contact-bot-check') as HTMLInputElement | null;
+      if (botField && botField.value.trim() !== '') {
+        // Soumission automatisée détectée : rejet silencieux
+        return;
+      }
+
+      // Contrôle de validité de l'ensemble des champs requis
+      const isNameValid = validateField('contact-name', 'error-name');
+      const isEmailValid = validateField('contact-email', 'error-email', validateEmail);
+      const isSubjectValid = validateField('contact-subject', 'error-subject');
+      const isMessageValid = validateField('contact-message', 'error-message');
+
+      if (!isNameValid || !isEmailValid || !isSubjectValid || !isMessageValid) {
+        // Focus sur le premier champ invalide
+        const firstInvalid = form.querySelector<HTMLElement>('.is-invalid');
+        if (firstInvalid) firstInvalid.focus();
+        return;
+      }
+
+      const accessKey = form.dataset.web3formsKey || '';
+      const isConfigured = accessKey && accessKey.trim() !== '' && accessKey !== 'your-web3forms-access-key-here';
+
+      // ÉTAT 1 : En cours d'envoi
+      submitBtn.disabled = true;
+      submitBtn.classList.add('is-loading');
+      if (btnText) btnText.textContent = 'Envoi en cours...';
+      statusBox.style.display = 'block';
+      if (statusSending) statusSending.style.display = 'flex';
+
+      // Si la clé n'est pas encore configurée (placeholder ou vide)
+      if (!isConfigured) {
+        setTimeout(() => {
+          submitBtn.disabled = false;
+          submitBtn.classList.remove('is-loading');
+          if (btnText) btnText.textContent = 'Envoyer mon message';
+          if (statusSending) statusSending.style.display = 'none';
+          if (statusError) statusError.style.display = 'flex';
+
+          if (errorTitle) {
+            errorTitle.textContent = 'Formulaire en mode démonstration';
+          }
+          if (errorDesc) {
+            errorDesc.textContent =
+              "La clé d'envoi Web3Forms (PUBLIC_WEB3FORMS_KEY) n'est pas encore configurée. Votre message n'a pas été envoyé. Pour me joindre directement, utilisez WhatsApp (+242 06 869 24 00) ou écrivez-moi à azizstudio@proton.me.";
+          }
+        }, 400);
+        return;
+      }
+
+      // Clé réelle disponible : transmission réelle via l'API Web3Forms
+      try {
+        const nameVal = (document.getElementById('contact-name') as HTMLInputElement).value.trim();
+        const emailVal = (document.getElementById('contact-email') as HTMLInputElement).value.trim();
+        const subjectVal = (document.getElementById('contact-subject') as HTMLInputElement).value.trim();
+        const messageVal = (document.getElementById('contact-message') as HTMLTextAreaElement).value.trim();
+
+        const response = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+          },
+          body: JSON.stringify({
+            access_key: accessKey,
+            name: nameVal,
+            email: emailVal,
+            subject: subjectVal,
+            message: messageVal,
+            from_name: 'Aziz Studio — Formulaire Portfolio',
+          }),
+        });
+
+        const data = await response.json().catch(() => null);
+
+        submitBtn.disabled = false;
+        submitBtn.classList.remove('is-loading');
+        if (btnText) btnText.textContent = 'Envoyer mon message';
+        if (statusSending) statusSending.style.display = 'none';
+
+        if (response.ok && data && data.success) {
+          // ÉTAT 2 : Succès (uniquement sur confirmation réelle de Web3Forms)
+          if (statusSuccess) statusSuccess.style.display = 'flex';
+          form.reset();
+        } else {
+          // ÉTAT 3 : Erreur retournée par l'API
+          const apiMsg = data && data.message ? data.message : "Le service d'envoi a retourné une erreur.";
+          if (statusError) statusError.style.display = 'flex';
+          if (errorTitle) errorTitle.textContent = "Erreur lors de l'envoi";
+          if (errorDesc) {
+            errorDesc.textContent = `${apiMsg}. Veuillez réessayer ou me contacter directement via WhatsApp ou par e-mail.`;
+          }
+        }
+      } catch (err) {
+        // ÉTAT 3 : Erreur réseau ou exception
+        submitBtn.disabled = false;
+        submitBtn.classList.remove('is-loading');
+        if (btnText) btnText.textContent = 'Envoyer mon message';
+        if (statusSending) statusSending.style.display = 'none';
+        if (statusError) statusError.style.display = 'flex';
+        if (errorTitle) errorTitle.textContent = 'Erreur de connexion';
+        if (errorDesc) {
+          errorDesc.textContent =
+            "Impossible d'établir la connexion avec le service Web3Forms. Veuillez vérifier votre accès réseau ou me contacter directement via WhatsApp (+242 06 869 24 00).";
+        }
+      }
+    });
+
+    // Nettoyage des erreurs lors de la saisie
+    ['contact-name', 'contact-email', 'contact-subject', 'contact-message'].forEach((id) => {
+      const input = document.getElementById(id);
+      if (input) {
+        input.addEventListener('input', () => {
+          input.classList.remove('is-invalid');
+          input.removeAttribute('aria-invalid');
+          const errorSpan = input.parentElement?.querySelector('.form-error') as HTMLElement | null;
+          if (errorSpan) errorSpan.style.display = 'none';
+        });
+      }
+    });
+  }
+
+  // Initialisation immédiate et compatibilité avec les transitions Astro
+  setupContactForm();
+  document.addEventListener('astro:page-load', setupContactForm);
+</script>
+
+<style>
+  /* --------------------------------------------------------------------------
+     Hero Contact & Fil d'Ariane
+     -------------------------------------------------------------------------- */
+  .contact-hero {
+    padding-top: var(--space-8);
+    padding-bottom: var(--space-6);
+  }
+
+  .breadcrumb {
+    margin-bottom: var(--space-5);
+  }
+
+  .breadcrumb__list {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: var(--fs-meta);
+  }
+
+  .breadcrumb__link {
+    color: var(--color-text-muted);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+  }
+
+  .breadcrumb__link:hover {
+    color: var(--color-accent);
+  }
+
+  .breadcrumb__separator {
+    color: var(--color-border-strong);
+  }
+
+  .breadcrumb__item--current {
+    color: var(--color-text);
+    font-weight: 500;
+  }
+
+  .contact-hero__content {
+    max-width: 820px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .contact-hero__eyebrow {
+    font-family: var(--font-body);
+    font-size: var(--fs-meta);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-accent);
+  }
+
+  .contact-hero__title {
+    font-size: var(--fs-h1);
+    line-height: var(--lh-h1);
+    color: var(--color-text);
+    margin: 0;
+  }
+
+  .contact-hero__lead {
+    font-size: var(--fs-subheading);
+    line-height: 1.65;
+    margin: 0;
+  }
+
+  /* --------------------------------------------------------------------------
+     Grille Contact & Formulaire
+     -------------------------------------------------------------------------- */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: var(--space-7);
+    align-items: flex-start;
+  }
+
+  .form-card {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-7);
+    box-shadow: var(--shadow-subtle);
+  }
+
+  .form-card__header {
+    margin-bottom: var(--space-6);
+  }
+
+  .form-card__title {
+    font-size: var(--fs-h2);
+    line-height: var(--lh-h2);
+    color: var(--color-text);
+    margin: 0 0 var(--space-2) 0;
+  }
+
+  .form-card__subtitle {
+    font-size: var(--fs-small);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+  }
+
+  /* Honeypot masqué */
+  .form-honeypot {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    overflow: hidden;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .form-label {
+    font-size: var(--fs-small);
+    font-weight: 500;
+    color: var(--color-text);
+  }
+
+  .form-required {
+    color: var(--color-accent);
+  }
+
+  .form-input,
+  .form-textarea {
+    width: 100%;
+    padding: var(--space-3) var(--space-4);
+    font-family: var(--font-body);
+    font-size: var(--fs-body);
+    color: var(--color-text);
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  }
+
+  .form-input:focus,
+  .form-textarea:focus {
+    outline: none;
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px rgba(180, 83, 9, 0.15);
+  }
+
+  .form-input.is-invalid,
+  .form-textarea.is-invalid {
+    border-color: #dc2626;
+    background-color: #fef2f2;
+  }
+
+  .form-textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+
+  .form-error {
+    font-size: 0.8rem;
+    color: #b91c1c;
+    line-height: 1.4;
+  }
+
+  /* Note de confidentialité */
+  .form-privacy-note {
+    display: flex;
+    gap: var(--space-3);
+    align-items: flex-start;
+    padding: var(--space-3) var(--space-4);
+    background-color: var(--color-surface-muted);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+  }
+
+  .privacy-note__icon {
+    font-size: 1rem;
+    line-height: 1.3;
+    flex-shrink: 0;
+  }
+
+  .privacy-note__text {
+    font-size: var(--fs-meta);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .form-actions {
+    padding-top: var(--space-2);
+  }
+
+  /* Bouton */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    font-family: var(--font-body);
+    font-weight: 500;
+    text-decoration: none;
+    border-radius: var(--radius-sm);
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+  }
+
+  .btn--primary {
+    background-color: var(--color-accent);
+    color: #ffffff;
+    border-color: var(--color-accent);
+  }
+
+  .btn--primary:hover:not(:disabled) {
+    background-color: #92400e;
+    border-color: #92400e;
+  }
+
+  .btn--whatsapp {
+    background-color: #128C7E;
+    color: #ffffff;
+    border-color: #128C7E;
+  }
+
+  .btn--whatsapp:hover {
+    background-color: #075E54;
+    border-color: #075E54;
+    color: #ffffff;
+  }
+
+  .btn--full {
+    width: 100%;
+    margin-top: var(--space-2);
+  }
+
+  .btn--lg {
+    padding: 12px 24px;
+    font-size: var(--fs-body);
+    min-height: 48px;
+  }
+
+  .btn:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+  }
+
+  .btn__arrow {
+    display: inline-block;
+    transition: transform var(--transition-fast);
+  }
+
+  .btn:hover:not(:disabled) .btn__arrow {
+    transform: translateX(3px);
+  }
+
+  /* --------------------------------------------------------------------------
+     Zone de statuts de soumission (3 états stricts)
+     -------------------------------------------------------------------------- */
+  .form-status-box {
+    margin-top: var(--space-4);
+  }
+
+  .status-msg {
+    display: flex;
+    gap: var(--space-3);
+    align-items: flex-start;
+    padding: var(--space-4);
+    border-radius: var(--radius-sm);
+    font-size: var(--fs-small);
+    line-height: 1.5;
+  }
+
+  .status-msg--sending {
+    background-color: var(--color-surface-muted);
+    border: 1px solid var(--color-border-strong);
+    color: var(--color-text);
+  }
+
+  .status-msg--success {
+    background-color: #f0fdf4;
+    border: 1px solid #86efac;
+    color: #166534;
+  }
+
+  .status-msg--error {
+    background-color: var(--color-surface-muted);
+    border: 1px solid var(--color-accent);
+    color: var(--color-text);
+  }
+
+  .status-icon {
+    font-size: 1.15rem;
+    font-weight: bold;
+    flex-shrink: 0;
+    line-height: 1.2;
+  }
+
+  .status-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .status-content p {
+    margin: 0;
+  }
+
+  /* --------------------------------------------------------------------------
+     Colonne de droite : Informations & Collaborations
+     -------------------------------------------------------------------------- */
+  .contact-info-column {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .info-card {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .info-card--status {
+    background-color: var(--color-surface-muted);
+    border-color: var(--color-border-strong);
+  }
+
+  .info-card--whatsapp {
+    border-color: #86efac;
+    background: linear-gradient(180deg, #f0fdf4 0%, var(--color-surface) 100%);
+  }
+
+  .info-card__tag {
+    font-size: var(--fs-meta);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-accent);
+  }
+
+  .info-card__tag--highlight {
+    background-color: #dcfce7;
+    color: #166534;
+    padding: 2px 8px;
+    border-radius: var(--radius-pill);
+    font-size: 0.72rem;
+    font-weight: 600;
+    display: inline-block;
+  }
+
+  .status-dot--online {
+    background-color: #16a34a;
+  }
+
+  /* Liste des moyens de contact direct */
+  .contact-methods-list {
+    list-style: none;
+    padding: 0;
+    margin: var(--space-2) 0 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .contact-method-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-3);
+    background-color: var(--color-surface-muted);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+  }
+
+  .contact-method-icon {
+    color: var(--color-accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .contact-method-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+  }
+
+  .contact-method-label {
+    font-size: var(--fs-meta);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-text-subtle);
+  }
+
+  .contact-method-link {
+    font-size: var(--fs-small);
+    font-weight: 500;
+    color: var(--color-text);
+    text-decoration: none;
+    word-break: break-all;
+    transition: color var(--transition-fast);
+  }
+
+  .contact-method-link:hover {
+    color: var(--color-accent);
+  }
+
+  /* Grille des réseaux sociaux */
+  .social-links-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-3);
+    margin-top: var(--space-2);
+  }
+
+  .social-link-card {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-3);
+    background-color: var(--color-surface-muted);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+    color: var(--color-text);
+    font-size: var(--fs-small);
+    font-weight: 500;
+    transition: all var(--transition-fast);
+  }
+
+  .social-link-card:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+    background-color: var(--color-surface);
+  }
+
+  .social-link-card__label {
+    flex: 1;
+  }
+
+  .social-link-card__arrow {
+    color: var(--color-text-subtle);
+    font-size: 0.75rem;
+    transition: transform var(--transition-fast);
+  }
+
+  .social-link-card:hover .social-link-card__arrow {
+    transform: translate(2px, -2px);
+    color: var(--color-accent);
+  }
+
+  .info-card__title {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    color: var(--color-text);
+    margin: 0;
+  }
+
+  .info-card__text {
+    font-size: var(--fs-small);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .info-card__status-indicator {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    margin-top: var(--space-2);
+    padding-top: var(--space-3);
+    border-top: 1px dashed var(--color-border);
+  }
+
+  .status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--color-accent);
+    display: inline-block;
+  }
+
+  .status-label {
+    font-size: var(--fs-meta);
+    font-weight: 500;
+    color: var(--color-text-muted);
+  }
+
+  .collab-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .collab-item {
+    display: flex;
+    gap: var(--space-3);
+    align-items: flex-start;
+  }
+
+  .collab-item__bullet {
+    color: var(--color-accent);
+    font-size: 0.9rem;
+    line-height: 1.4;
+    flex-shrink: 0;
+  }
+
+  .collab-item__content {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    font-size: var(--fs-small);
+  }
+
+  .collab-item__content strong {
+    color: var(--color-text);
+  }
+
+  .collab-item__content p {
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  /* --------------------------------------------------------------------------
+     Explore Box
+     -------------------------------------------------------------------------- */
+  .section-eyebrow {
+    font-family: var(--font-body);
+    font-size: var(--fs-meta);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-accent);
+    display: block;
+    margin-bottom: var(--space-2);
+  }
+
+  .explore-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--space-3);
+    padding-block: var(--space-4);
+  }
+
+  .explore-box__title {
+    font-size: var(--fs-h2);
+    line-height: var(--lh-h2);
+    color: var(--color-text);
+    margin: 0;
+  }
+
+  .explore-box__actions {
+    display: flex;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-top: var(--space-2);
+  }
+
+  /* --------------------------------------------------------------------------
+     Responsive
+     -------------------------------------------------------------------------- */
+  @media (max-width: 900px) {
+    .contact-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-6);
+    }
+  }
+
+  @media (max-width: 639px) {
+    .contact-hero {
+      padding-top: var(--space-6);
+    }
+
+    .form-card {
+      padding: var(--space-5);
+    }
+
+    .social-links-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

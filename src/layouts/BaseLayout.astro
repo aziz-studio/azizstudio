@@ -1,0 +1,116 @@
+---
+import { ClientRouter } from 'astro:transitions';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+import { siteConfig } from '../config/site';
+import '../styles/global.css';
+import '../styles/animations.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+}
+
+const {
+  title = `${siteConfig.name} — ${siteConfig.tagline}`,
+  description = siteConfig.description,
+  image = '/images/og-aziz-studio.png',
+} = Astro.props;
+
+const siteOrigin = Astro.site ? Astro.site.origin : (siteConfig.url || import.meta.env.PUBLIC_SITE_URL || null);
+const canonicalURL = siteOrigin ? new URL(Astro.url.pathname, siteOrigin).href : null;
+const ogImageURL = siteOrigin ? new URL(image, siteOrigin).href : image;
+const ogURL = siteOrigin ? canonicalURL : null;
+---
+
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {canonicalURL && <link rel="canonical" href={canonicalURL} />}
+    <meta name="theme-color" content="#FAF8F5" />
+
+    <!-- Open Graph / Réseaux Sociaux -->
+    <meta property="og:type" content="website" />
+    {ogURL && <meta property="og:url" content={ogURL} />}
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageURL} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:site_name" content={siteConfig.name} />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageURL} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Données structurées Schema.org (JSON-LD) -->
+    <script
+      type="application/ld+json"
+      is:inline
+      set:html={JSON.stringify({
+        '@context': 'https://schema.org',
+        '@graph': [
+          {
+            '@type': 'WebSite',
+            '@id': siteOrigin ? `${siteOrigin}/#website` : '#website',
+            ...(siteOrigin ? { url: siteOrigin } : {}),
+            name: siteConfig.name,
+            description: siteConfig.description,
+            inLanguage: 'fr-FR',
+          },
+          {
+            '@type': 'Person',
+            '@id': siteOrigin ? `${siteOrigin}/#person` : '#person',
+            name: 'Aziz',
+            jobTitle: 'Concepteur web indépendant',
+            ...(siteOrigin ? { url: siteOrigin } : {}),
+            description:
+              'Concepteur web indépendant réalisant des sites web soignés, clairs et utiles avec WordPress et Astro.',
+            knowsAbout: [
+              'Conception web',
+              'Design d’interfaces (UI/UX)',
+              'WordPress & Gutenberg',
+              'Astro & TypeScript',
+              'HTML/CSS responsive',
+            ],
+          },
+        ],
+      })}
+    />
+
+    <!-- Astro View Transitions -->
+    <ClientRouter />
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">Aller au contenu principal</a>
+
+    <Header />
+
+    <main id="main-content" tabindex="-1">
+      <slot />
+    </main>
+
+    <Footer />
+
+    <!-- Système d'animations et transitions GSAP / Lenis -->
+    <script src="../scripts/animations/index.ts"></script>
+  </body>
+</html>
+
+<style>
+  #main-content {
+    outline: none;
+    flex: 1 0 auto;
+  }
+</style>

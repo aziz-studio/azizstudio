@@ -1,0 +1,296 @@
+---
+import { siteConfig } from '../../config/site';
+import Divider from '../ui/Divider.astro';
+import SocialIcon from '../ui/SocialIcon.astro';
+
+const currentYear = new Date().getFullYear();
+const hasSocials = siteConfig.socials && siteConfig.socials.length > 0;
+const hasContactInfo = siteConfig.email || siteConfig.phone || siteConfig.whatsapp;
+---
+
+<footer class="footer">
+  <div class="container footer__inner">
+    <div class="footer__main">
+      <div class="footer__brand">
+        <a href="/" class="footer__logo">
+          <span class="footer__logo-mark" aria-hidden="true">A</span>
+          <span class="footer__logo-text">{siteConfig.name}</span>
+        </a>
+        <p class="footer__tagline">{siteConfig.tagline}</p>
+        {siteConfig.description && (
+          <p class="footer__description text-muted">{siteConfig.description}</p>
+        )}
+      </div>
+
+      <nav class="footer__nav" aria-label="Navigation secondaire">
+        <h2 class="footer__heading">Navigation</h2>
+        <ul class="footer__list">
+          {
+            siteConfig.navigation.map((item) => (
+              <li>
+                <a href={item.href} class="footer__link">
+                  {item.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+
+      {hasContactInfo && (
+        <div class="footer__contact">
+          <h2 class="footer__heading">Coordonnées</h2>
+          <div class="footer__contact-details">
+            {siteConfig.whatsapp && (
+              <p class="footer__contact-item">
+                <a
+                  href={siteConfig.whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="footer__link footer__link--whatsapp"
+                  aria-label="Contacter sur WhatsApp (s'ouvre dans un nouvel onglet)"
+                >
+                  <SocialIcon name="whatsapp" size={16} />
+                  <span>{siteConfig.whatsappDisplay}</span>
+                  <span class="footer__badge">WhatsApp</span>
+                </a>
+              </p>
+            )}
+            {siteConfig.email && (
+              <p class="footer__contact-item">
+                <a
+                  href={`mailto:${siteConfig.email}`}
+                  class="footer__link"
+                  aria-label="Envoyer un e-mail à Aziz Studio"
+                >
+                  <SocialIcon name="email" size={16} />
+                  <span>{siteConfig.email}</span>
+                </a>
+              </p>
+            )}
+            {siteConfig.phone && (
+              <p class="footer__contact-item">
+                <a
+                  href={`tel:${siteConfig.phone}`}
+                  class="footer__link"
+                  aria-label="Appeler Aziz Studio au téléphone"
+                >
+                  <SocialIcon name="phone" size={16} />
+                  <span>{siteConfig.phoneDisplay}</span>
+                </a>
+              </p>
+            )}
+          </div>
+        </div>
+      )}
+
+      {hasSocials && (
+        <div class="footer__socials">
+          <h2 class="footer__heading">Réseaux officiels</h2>
+          <ul class="footer__list footer__social-list">
+            {siteConfig.socials.map((social) => (
+              <li>
+                <a
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="footer__link footer__link--social"
+                  aria-label={`${social.label} — Aziz Studio (s'ouvre dans un nouvel onglet)`}
+                >
+                  <SocialIcon name={social.icon as any} size={15} />
+                  <span>{social.label}</span>
+                  <span class="footer__ext-icon" aria-hidden="true">↗</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </div>
+
+    <Divider space="md" />
+
+    <div class="footer__bottom">
+      <p class="footer__copyright text-muted">
+        &copy; {currentYear} {siteConfig.name}. Tous droits réservés.
+      </p>
+      <p class="footer__credit text-muted">
+        Conception web soignée &amp; CSS natif — Minimalisme chaleureux
+      </p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    margin-top: auto;
+    background-color: var(--color-surface-muted);
+    border-top: 1px solid var(--color-border);
+    padding-top: var(--space-8);
+    padding-bottom: var(--space-6);
+  }
+
+  .footer__inner {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .footer__main {
+    display: grid;
+    grid-template-columns: 1.8fr 1fr 1.4fr 1.1fr;
+    gap: var(--space-6);
+  }
+
+  .footer__brand {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    max-width: 440px;
+  }
+
+  .footer__logo {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    text-decoration: none;
+    color: var(--color-text);
+  }
+
+  .footer__logo-mark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    background-color: var(--color-text);
+    color: var(--color-on-accent);
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 700;
+    border-radius: var(--radius-sm);
+    line-height: 1;
+  }
+
+  .footer__logo-text {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    color: var(--color-text);
+  }
+
+  .footer__tagline {
+    font-size: var(--fs-small);
+    font-weight: 500;
+    color: var(--color-text);
+  }
+
+  .footer__description {
+    font-size: var(--fs-small);
+    line-height: 1.55;
+  }
+
+  .footer__heading {
+    font-family: var(--font-body);
+    font-size: var(--fs-meta);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-text-subtle);
+    margin-bottom: var(--space-3);
+  }
+
+  .footer__list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .footer__link {
+    font-size: var(--fs-small);
+    color: var(--color-text-muted);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    transition: color var(--transition-fast);
+  }
+
+  .footer__link:hover {
+    color: var(--color-accent);
+  }
+
+  .footer__link:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+
+  .footer__link--whatsapp {
+    color: var(--color-text);
+    font-weight: 500;
+  }
+
+  .footer__badge {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    background-color: var(--color-accent-soft);
+    color: var(--color-accent);
+    padding: 1px 6px;
+    border-radius: var(--radius-pill);
+    font-weight: 600;
+  }
+
+  .footer__ext-icon {
+    font-size: 0.75rem;
+    color: var(--color-text-subtle);
+    transition: transform var(--transition-fast);
+  }
+
+  .footer__link:hover .footer__ext-icon {
+    transform: translate(2px, -2px);
+    color: var(--color-accent);
+  }
+
+  .footer__contact-details {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    font-size: var(--fs-small);
+  }
+
+  .footer__contact-item {
+    margin: 0;
+  }
+
+  .footer__bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+    font-size: var(--fs-meta);
+  }
+
+  @media (max-width: 1024px) {
+    .footer__main {
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-6);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .footer__main {
+      grid-template-columns: 1fr;
+      gap: var(--space-6);
+    }
+
+    .footer__bottom {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-2);
+    }
+  }
+</style>

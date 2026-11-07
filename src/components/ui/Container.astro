@@ -1,0 +1,39 @@
+---
+interface Props {
+  as?: 'div' | 'section' | 'article' | 'main' | 'header' | 'footer' | 'nav';
+  width?: 'default' | 'narrow' | 'wide' | 'full';
+  class?: string;
+  [key: string]: any;
+}
+
+const {
+  as: Tag = 'div',
+  width = 'default',
+  class: className = '',
+  ...rest
+} = Astro.props;
+---
+
+<Tag class:list={['container', `container--${width}`, className]} {...rest}>
+  <slot />
+</Tag>
+
+<style>
+  .container {
+    width: min(100% - 2 * var(--page-gutter), var(--container-max));
+    margin-inline: auto;
+  }
+
+  .container--narrow {
+    width: min(100% - 2 * var(--page-gutter), 54rem); /* ~864px pour lecture concentrée */
+  }
+
+  .container--wide {
+    width: min(100% - 2 * var(--page-gutter), 104rem); /* ~1664px */
+  }
+
+  .container--full {
+    width: 100%;
+    padding-inline: var(--page-gutter);
+  }
+</style>

@@ -1,0 +1,527 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Container from '../../components/ui/Container.astro';
+import Button from '../../components/ui/Button.astro';
+import Divider from '../../components/ui/Divider.astro';
+import ProjectCard from '../../components/ui/ProjectCard.astro';
+import { detailedProjects } from '../../data/projects';
+import { siteConfig } from '../../config/site';
+
+function getFilterCategory(id: string): string {
+  if (id === 'maison-kiala') return 'elementor';
+  if (id === 'elikia-sante') return 'gutenberg';
+  return 'ai';
+}
+---
+
+<BaseLayout
+  title={`Projets — ${siteConfig.name}`}
+  description="Découvrez la sélection de projets personnels conçus par Aziz Studio : hôtellerie, commerce en ligne, architecture d'intérieur et santé."
+>
+  <!-- En-tête de page & Fil d'Ariane -->
+  <section class="page-hero">
+    <Container>
+      <nav class="breadcrumb" aria-label="Fil d'Ariane">
+        <ol class="breadcrumb__list">
+          <li class="breadcrumb__item">
+            <a href="/" class="breadcrumb__link">Accueil</a>
+          </li>
+          <li class="breadcrumb__separator" aria-hidden="true">/</li>
+          <li class="breadcrumb__item breadcrumb__item--current" aria-current="page">
+            Projets
+          </li>
+        </ol>
+      </nav>
+
+      <div class="page-hero__content">
+        <span class="page-hero__eyebrow">Portfolio &amp; Explorations</span>
+        <h1 class="page-hero__title">Sélection de projets personnels.</h1>
+        <p class="page-hero__lead text-muted">
+          Une exploration d'univers variés à travers la conception d'interfaces, WordPress, les outils d'assistance par l'IA et les technologies web actuelles. Chaque projet illustre une intention, une démarche et des choix ergonomiques précis.
+        </p>
+
+        <!-- Filtres interactifs par méthode -->
+        <div class="projects-filter-bar" role="toolbar" aria-label="Filtrer les projets par méthode">
+          <span class="filter-bar__label">Filtrer par méthode :</span>
+          <div class="filter-bar__buttons">
+            <button
+              type="button"
+              class="filter-btn is-active"
+              data-filter="all"
+              aria-pressed="true"
+            >
+              <span>Tous</span>
+              <span class="filter-btn__count">4</span>
+            </button>
+            <button
+              type="button"
+              class="filter-btn"
+              data-filter="ai"
+              aria-pressed="false"
+            >
+              <span>Assistance IA</span>
+              <span class="filter-btn__count">2</span>
+            </button>
+            <button
+              type="button"
+              class="filter-btn"
+              data-filter="elementor"
+              aria-pressed="false"
+            >
+              <span>WordPress &amp; Elementor</span>
+              <span class="filter-btn__count">1</span>
+            </button>
+            <button
+              type="button"
+              class="filter-btn"
+              data-filter="gutenberg"
+              aria-pressed="false"
+            >
+              <span>WordPress &amp; Gutenberg</span>
+              <span class="filter-btn__count">1</span>
+            </button>
+          </div>
+        </div>
+        <div id="filter-live-status" class="sr-only" role="status" aria-live="polite">
+          4 projets affichés
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <Container>
+    <Divider />
+  </Container>
+
+  <!-- Grille des projets filtrable -->
+  <section class="section section--projects-list">
+    <Container>
+      <div class="grid grid--2 projects-catalog-grid" id="projects-grid">
+        {
+          detailedProjects.map((project) => (
+            <div
+              class="project-item"
+              data-category={getFilterCategory(project.id)}
+            >
+              <ProjectCard
+                title={project.title}
+                category={project.category}
+                nature={project.nature}
+                method={project.methodOrTech}
+                description={project.summary}
+                technologies={project.technologies}
+                href={`/projets/${project.id}`}
+                imageSrc={project.imageSrc}
+                imageAlt={project.imageAlt}
+                headingLevel="h2"
+              />
+            </div>
+          ))
+        }
+      </div>
+
+      <!-- Emplacements réservés pour les futures réalisations -->
+      <div class="projects-future-card">
+        <div class="future-card__icon" aria-hidden="true">✦</div>
+        <div class="future-card__body">
+          <h2 class="future-card__title">Deux futurs projets en cours d'exploration</h2>
+          <p class="future-card__text text-muted">
+            Deux nouveaux espaces de travail sont réservés pour de prochaines réalisations. Ces études viendront enrichir ce portfolio au fur et à mesure de mon perfectionnement technique et de mes recherches conceptuelles.
+          </p>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <Container>
+    <Divider />
+  </Container>
+
+  <!-- Section Méthode & Engagement -->
+  <section class="section section--method-note">
+    <Container width="narrow">
+      <div class="method-note-box">
+        <span class="method-note__eyebrow">Démarche de travail</span>
+        <h2 class="method-note__title">Une conception raisonnée et soignée</h2>
+        <p class="method-note__text text-muted">
+          Chacun de ces projets a été conçu avec la même rigueur : comprendre le besoin utilisateur, structurer l'information, choisir des typographies lisibles et apporter un soin particulier aux détails d'interaction.
+        </p>
+        <div class="method-note__action">
+          <Button variant="secondary" href="/#approche" size="md">
+            Découvrir ma démarche en 4 étapes
+          </Button>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <Container>
+    <Divider />
+  </Container>
+
+  <!-- Section CTA Contact -->
+  <section class="section section--contact-cta">
+    <Container width="narrow">
+      <div class="contact-cta-card">
+        <span class="contact-cta__eyebrow">Échange &amp; Projets</span>
+        <h2 class="contact-cta__title">Vous avez un projet web en vue ?</h2>
+        <p class="contact-cta__text text-muted">
+          Que vous ayez besoin d'un site vitrine, d'une refonte WordPress ou d'une réflexion sur vos interfaces, je suis disponible pour en discuter.
+        </p>
+        <div class="contact-cta__action">
+          <Button variant="primary" href="/contact" size="lg" showArrow>
+            Prendre contact
+          </Button>
+        </div>
+      </div>
+    </Container>
+  </section>
+</BaseLayout>
+
+<script>
+  function initProjectFilters() {
+    const filterButtons = document.querySelectorAll<HTMLButtonElement>('.filter-btn');
+    const projectItems = document.querySelectorAll<HTMLElement>('.project-item');
+    const statusEl = document.getElementById('filter-live-status');
+    const firstBtn = filterButtons[0];
+    if (!firstBtn || !projectItems.length) return;
+    if (firstBtn.dataset.bound === 'true') return;
+    firstBtn.dataset.bound = 'true';
+
+    filterButtons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const selected = btn.getAttribute('data-filter') || 'all';
+
+        // Mettre à jour l'état actif sur les boutons
+        filterButtons.forEach((b) => {
+          const isActive = b === btn;
+          b.classList.toggle('is-active', isActive);
+          b.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+        });
+
+        // Filtrer les éléments de la grille
+        let count = 0;
+        projectItems.forEach((item) => {
+          const category = item.getAttribute('data-category');
+          const isMatch = selected === 'all' || category === selected;
+          if (isMatch) {
+            item.style.display = '';
+            count++;
+          } else {
+            item.style.display = 'none';
+          }
+        });
+
+        if (statusEl) {
+          statusEl.textContent = `${count} projet(s) affiché(s)`;
+        }
+      });
+    });
+  }
+
+  // Initialisation immédiate et compatibilité Astro
+  initProjectFilters();
+  document.addEventListener('astro:page-load', initProjectFilters);
+</script>
+
+<style>
+  /* --------------------------------------------------------------------------
+     Page Hero & Fil d'Ariane
+     -------------------------------------------------------------------------- */
+  .page-hero {
+    padding-top: var(--space-8);
+    padding-bottom: var(--space-6);
+  }
+
+  .breadcrumb {
+    margin-bottom: var(--space-5);
+  }
+
+  .breadcrumb__list {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: var(--fs-meta);
+  }
+
+  .breadcrumb__link {
+    color: var(--color-text-muted);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+  }
+
+  .breadcrumb__link:hover {
+    color: var(--color-accent);
+  }
+
+  .breadcrumb__separator {
+    color: var(--color-border-strong);
+  }
+
+  .breadcrumb__item--current {
+    color: var(--color-text);
+    font-weight: 500;
+  }
+
+  .page-hero__content {
+    max-width: 860px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .page-hero__eyebrow {
+    font-family: var(--font-body);
+    font-size: var(--fs-meta);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-accent);
+  }
+
+  .page-hero__title {
+    font-size: var(--fs-h1);
+    line-height: var(--lh-h1);
+    color: var(--color-text);
+    margin: 0;
+  }
+
+  .page-hero__lead {
+    font-size: var(--fs-subheading);
+    line-height: 1.65;
+    margin: 0;
+  }
+
+  /* --------------------------------------------------------------------------
+     Filtres interactifs
+     -------------------------------------------------------------------------- */
+  .projects-filter-bar {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+    margin-top: var(--space-4);
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .filter-bar__label {
+    font-size: var(--fs-small);
+    font-weight: 500;
+    color: var(--color-text-subtle);
+  }
+
+  .filter-bar__buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  .filter-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    min-height: 40px;
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--color-border);
+    background-color: var(--color-surface);
+    color: var(--color-text-muted);
+    font-family: var(--font-body);
+    font-size: var(--fs-small);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+  }
+
+  .filter-btn:hover {
+    color: var(--color-text);
+    border-color: var(--color-border-strong);
+    background-color: var(--color-surface-muted);
+  }
+
+  .filter-btn.is-active {
+    background-color: var(--color-accent);
+    color: #ffffff;
+    border-color: var(--color-accent);
+  }
+
+  .filter-btn:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+
+  .filter-btn__count {
+    font-size: 0.75rem;
+    padding: 1px 6px;
+    border-radius: var(--radius-pill);
+    background-color: rgba(0, 0, 0, 0.08);
+  }
+
+  .filter-btn.is-active .filter-btn__count {
+    background-color: rgba(255, 255, 255, 0.25);
+    color: #ffffff;
+  }
+
+  /* --------------------------------------------------------------------------
+     Grille des Projets & Emplacements futurs
+     -------------------------------------------------------------------------- */
+  .projects-catalog-grid {
+    margin-bottom: var(--space-7);
+  }
+
+  .project-item {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .projects-future-card {
+    display: flex;
+    gap: var(--space-4);
+    align-items: flex-start;
+    background-color: var(--color-surface-muted);
+    border: 1px dashed var(--color-border-strong);
+    border-radius: var(--radius-md);
+    padding: var(--space-6);
+  }
+
+  .future-card__icon {
+    font-size: 1.5rem;
+    color: var(--color-accent);
+    line-height: 1;
+    flex-shrink: 0;
+    padding-top: 2px;
+  }
+
+  .future-card__body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .future-card__title {
+    font-family: var(--font-display);
+    font-size: var(--fs-h3);
+    line-height: var(--lh-h3);
+    color: var(--color-text);
+    margin: 0;
+  }
+
+  .future-card__text {
+    font-size: var(--fs-small);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* --------------------------------------------------------------------------
+     Section Méthode & Note
+     -------------------------------------------------------------------------- */
+  .method-note-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--space-3);
+  }
+
+  .method-note__eyebrow {
+    font-family: var(--font-body);
+    font-size: var(--fs-meta);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-accent);
+  }
+
+  .method-note__title {
+    font-size: var(--fs-h2);
+    line-height: var(--lh-h2);
+    color: var(--color-text);
+    margin: 0;
+  }
+
+  .method-note__text {
+    font-size: var(--fs-body);
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  .method-note__action {
+    padding-top: var(--space-2);
+  }
+
+  /* --------------------------------------------------------------------------
+     Section CTA Contact
+     -------------------------------------------------------------------------- */
+  .section--contact-cta {
+    background-color: var(--color-surface-muted);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .contact-cta-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--space-3);
+    padding-block: var(--space-4);
+  }
+
+  .contact-cta__eyebrow {
+    font-family: var(--font-body);
+    font-size: var(--fs-meta);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-accent);
+  }
+
+  .contact-cta__title {
+    font-size: var(--fs-h2);
+    line-height: var(--lh-h2);
+    color: var(--color-text);
+    margin: 0;
+  }
+
+  .contact-cta__text {
+    font-size: var(--fs-subheading);
+    line-height: var(--lh-body);
+    margin: 0;
+  }
+
+  .contact-cta__action {
+    padding-top: var(--space-3);
+  }
+
+  /* --------------------------------------------------------------------------
+     Responsive
+     -------------------------------------------------------------------------- */
+  @media (max-width: 639px) {
+    .page-hero {
+      padding-top: var(--space-6);
+    }
+
+    .projects-filter-bar {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-2);
+    }
+
+    .filter-bar__buttons {
+      width: 100%;
+    }
+
+    .filter-btn {
+      min-height: 44px;
+      padding: 8px 14px;
+    }
+
+    .projects-future-card {
+      flex-direction: column;
+      padding: var(--space-5);
+    }
+  }
+</style>

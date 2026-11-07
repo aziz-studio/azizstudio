@@ -1,0 +1,242 @@
+{
+  "seo": [
+    {
+      "route": "/",
+      "title": "Aziz Studio — Concepteur web indépendant",
+      "metaDesc": "Découvrez Aziz Studio, l'univers d'Aziz, concepteur web indépendant. Projets personnels, conception d'interfaces et création de sites web.",
+      "canonical": "https://azizstudio.fr/",
+      "ogTitle": "Aziz Studio — Concepteur web indépendant",
+      "ogDesc": "Découvrez Aziz Studio, l'univers d'Aziz, concepteur web indépendant. Projets personnels, conception d'interfaces et création de sites web.",
+      "ogImage": "https://azizstudio.fr/images/og-aziz-studio.png",
+      "ogType": "website",
+      "twitterCard": "summary_large_image",
+      "h1Count": 1,
+      "h1Text": "Je conçois des expériences web claires, soignées et utiles.",
+      "hasJsonLd": true,
+      "jsonLdValid": true
+    },
+    {
+      "route": "/projets",
+      "title": "Projets — Aziz Studio",
+      "metaDesc": "Découvrez la sélection de projets personnels conçus par Aziz Studio : hôtellerie, commerce en ligne, architecture d'intérieur et santé.",
+      "canonical": "https://azizstudio.fr/projets/",
+      "ogTitle": "Projets — Aziz Studio",
+      "ogDesc": "Découvrez la sélection de projets personnels conçus par Aziz Studio : hôtellerie, commerce en ligne, architecture d'intérieur et santé.",
+      "ogImage": "https://azizstudio.fr/images/og-aziz-studio.png",
+      "ogType": "website",
+      "twitterCard": "summary_large_image",
+      "h1Count": 1,
+      "h1Text": "Sélection de projets personnels.",
+      "hasJsonLd": true,
+      "jsonLdValid": true
+    },
+    {
+      "route": "/projets/boulevard-hotel",
+      "title": "Boulevard Hôtel — Projet | Aziz Studio",
+      "metaDesc": "Un univers hôtelier haut de gamme présenté à travers une expérience web immersive, combinant élégance visuelle et parcours de réservation épuré.",
+      "canonical": "https://azizstudio.fr/projets/boulevard-hotel/",
+      "ogTitle": "Boulevard Hôtel — Projet | Aziz Studio",
+      "ogDesc": "Un univers hôtelier haut de gamme présenté à travers une expérience web immersive, combinant élégance visuelle et parcours de réservation épuré.",
+      "ogImage": "https://azizstudio.fr/images/og-aziz-studio.png",
+      "ogType": "website",
+      "twitterCard": "summary_large_image",
+      "h1Count": 1,
+      "h1Text": "Boulevard Hôtel",
+      "hasJsonLd": true,
+      "jsonLdValid": true
+    },
+    {
+      "route": "/projets/molato-commerce",
+      "title": "Molato Commerce — Projet | Aziz Studio",
+      "metaDesc": "Une boutique en ligne épurée pensée pour sublimer les produits de mode contemporaine et offrir un parcours d'achat sans friction.",
+      "canonical": "https://azizstudio.fr/projets/molato-commerce/",
+      "ogTitle": "Molato Commerce — Projet | Aziz Studio",
+      "ogDesc": "Une boutique en ligne épurée pensée pour sublimer les produits de mode contemporaine et offrir un parcours d'achat sans friction.",
+      "ogImage": "https://azizstudio.fr/images/og-aziz-studio.png",
+      "ogType": "website",
+      "twitterCard": "summary_large_image",
+      "h1Count": 1,
+      "h1Text": "Molato Commerce",
+      "hasJsonLd": true,
+      "jsonLdValid": true
+    },
+    {
+      "route": "/projets/maison-kiala",
+      "title": "Maison Kiala — Projet | Aziz Studio",
+      "metaDesc": "Un site vitrine au style éditorial haut de gamme dédié à un studio d'architecture d'intérieur et d'aménagement d'espaces contemporains.",
+      "canonical": "https://azizstudio.fr/projets/maison-kiala/",
+      "ogTitle": "Maison Kiala — Projet | Aziz Studio",
+      "ogDesc": "Un site vitrine au style éditorial haut de gamme dédié à un studio d'architecture d'intérieur et d'aménagement d'espaces contemporains.",
+      "ogImage": "https://azizstudio.fr/images/og-aziz-studio.png",
+      "ogType": "website",
+      "twitterCard": "summary_large_image",
+      "h1Count": 1,
+      "h1Text": "Maison Kiala",
+      "hasJsonLd": true,
+      "jsonLdValid": true
+    },
+    {
+      "route": "/projets/elikia-sante",
+      "title": "Elikia Santé — Projet | Aziz Studio",
+      "metaDesc": "Une vitrine claire, accessible et rassurante pour une clinique dentaire et pôle de santé pluridisciplinaire.",
+      "canonical": "https://azizstudio.fr/projets/elikia-sante/",
+      "ogTitle": "Elikia Santé — Projet | Aziz Studio",
+      "ogDesc": "Une vitrine claire, accessible et rassurante pour une clinique dentaire et pôle de santé pluridisciplinaire.",
+      "ogImage": "https://azizstudio.fr/images/og-aziz-studio.png",
+      "ogType": "website",
+      "twitterCard": "summary_large_image",
+      "h1Count": 1,
+      "h1Text": "Elikia Santé",
+      "hasJsonLd": true,
+      "jsonLdValid": true
+    },
+    {
+      "route": "/a-propos",
+      "title": "À propos — Aziz Studio",
+      "metaDesc": "Découvrez le parcours d'Aziz, concepteur web indépendant : ses débuts avec WordPress, sa démarche de conception en 4 étapes, l'assistance par l'IA et l'apprentissage d'Astro.",
+      "canonical": "https://azizstudio.fr/a-propos/",
+      "ogTitle": "À propos — Aziz Studio",
+      "ogDesc": "Découvrez le parcours d'Aziz, concepteur web indépendant : ses débuts avec WordPress, sa démarche de conception en 4 étapes, l'assistance par l'IA et l'apprentissage d'Astro.",
+      "ogImage": "https://azizstudio.fr/images/og-aziz-studio.png",
+      "ogType": "website",
+      "twitterCard": "summary_large_image",
+      "h1Count": 1,
+      "h1Text": "Derrière chaque projet, une idée à faire vivre.",
+      "hasJsonLd": true,
+      "jsonLdValid": true
+    },
+    {
+      "route": "/contact",
+      "title": "Contact — Aziz Studio",
+      "metaDesc": "Contactez Aziz Studio pour échanger sur vos projets de création de site web, refonte WordPress ou structuration d'interfaces.",
+      "canonical": "https://azizstudio.fr/contact/",
+      "ogTitle": "Contact — Aziz Studio",
+      "ogDesc": "Contactez Aziz Studio pour échanger sur vos projets de création de site web, refonte WordPress ou structuration d'interfaces.",
+      "ogImage": "https://azizstudio.fr/images/og-aziz-studio.png",
+      "ogType": "website",
+      "twitterCard": "summary_large_image",
+      "h1Count": 1,
+      "h1Text": "Parlons de votre projet.",
+      "hasJsonLd": true,
+      "jsonLdValid": true
+    }
+  ],
+  "responsive": [],
+  "images": [
+    {
+      "page": "/",
+      "images": [
+        {
+          "src": "/images/boulevard-hotel-thumb.webp",
+          "alt": "Aperçu de l'interface conçue pour le projet Boulevard Hôtel",
+          "hasAlt": true,
+          "width": "800",
+          "height": "500",
+          "loading": "lazy",
+          "decoding": "async",
+          "naturalWidth": 800,
+          "naturalHeight": 500,
+          "complete": true
+        },
+        {
+          "src": "/images/molato-commerce-thumb.webp",
+          "alt": "Aperçu de l'interface conçue pour le projet Molato Commerce",
+          "hasAlt": true,
+          "width": "800",
+          "height": "500",
+          "loading": "lazy",
+          "decoding": "async",
+          "naturalWidth": 800,
+          "naturalHeight": 500,
+          "complete": true
+        },
+        {
+          "src": "/images/maison-kiala-thumb.webp",
+          "alt": "Aperçu de l'interface conçue pour le projet Maison Kiala",
+          "hasAlt": true,
+          "width": "800",
+          "height": "500",
+          "loading": "lazy",
+          "decoding": "async",
+          "naturalWidth": 800,
+          "naturalHeight": 500,
+          "complete": true
+        },
+        {
+          "src": "/images/elikia-sante-thumb.webp",
+          "alt": "Aperçu de l'interface conçue pour le projet Elikia Santé",
+          "hasAlt": true,
+          "width": "800",
+          "height": "500",
+          "loading": "lazy",
+          "decoding": "async",
+          "naturalWidth": 800,
+          "naturalHeight": 500,
+          "complete": true
+        }
+      ]
+    },
+    {
+      "page": "/projets/boulevard-hotel",
+      "images": [
+        {
+          "src": "/images/boulevard-hotel.webp",
+          "alt": "Aperçu de l'interface conçue pour le projet Boulevard Hôtel",
+          "hasAlt": true,
+          "width": "1200",
+          "height": "700",
+          "loading": "lazy",
+          "decoding": "async",
+          "naturalWidth": 1920,
+          "naturalHeight": 7477,
+          "complete": true
+        }
+      ]
+    },
+    {
+      "page": "/a-propos",
+      "images": [
+        {
+          "src": "/images/aziz-studio-hero.webp",
+          "alt": "Portrait d'Aziz — Concepteur web indépendant",
+          "hasAlt": true,
+          "width": "340",
+          "height": "425",
+          "loading": "eager",
+          "decoding": "async",
+          "naturalWidth": 800,
+          "naturalHeight": 1067,
+          "complete": true
+        }
+      ]
+    }
+  ],
+  "a11y": {},
+  "links": [],
+  "form": {
+    "requiredCheck": {
+      "nameInv": true,
+      "emailInv": true,
+      "subjInv": true,
+      "msgInv": true
+    },
+    "emailCheck": {
+      "emailInvalid": true,
+      "errorText": "Veuillez renseigner une adresse e-mail valide (ex : nom@domaine.fr)."
+    },
+    "unconfiguredCheck": {
+      "isVisible": true,
+      "desc": "Ceci est une démonstration du formulaire. Les paramètres d'environnement de réception (PUBLIC_CONTACT_ENDPOINT) ne sont pas encore renseignés. Votre message n'a pas été envoyé. Les moyens de contact seront activés prochainement."
+    }
+  },
+  "serverFiles": {
+    "robots": {
+      "status": 200,
+      "hasSitemapDirective": true
+    },
+    "sitemap": {
+      "status": 200,
+      "urlsCount": 8
+    }
+  }
+}

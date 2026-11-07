@@ -1,0 +1,67 @@
+{
+  "splitText": {
+    "home": {
+      "h1Exists": true,
+      "ariaLabel": "Je conçois des expériences web claires, soignées et utiles.",
+      "linesCount": 3,
+      "masksCount": 3,
+      "linesText": [
+        "Je conçois des",
+        "expériences web claires,",
+        "soignées et utiles."
+      ]
+    },
+    "projets": {
+      "titleExists": true,
+      "linesCount": 2,
+      "text": "Sélection de\nprojets personnels."
+    },
+    "detail": {
+      "titleExists": true,
+      "linesCount": 1,
+      "titleText": "Boulevard Hôtel"
+    },
+    "about": {
+      "titleExists": true,
+      "linesCount": 2
+    },
+    "contact": {
+      "titleExists": true,
+      "linesCount": 1
+    }
+  },
+  "scrollTrigger": {
+    "totalTriggers": 0,
+    "triggersInfo": []
+  },
+  "lenis": {
+    "htmlHasLenis": true,
+    "htmlHasSmooth": false,
+    "hasAnchorBound": true
+  },
+  "pageTransitions": {
+    "navClick": true,
+    "postNavCheck": {
+      "url": "/projets",
+      "triggersCount": 0,
+      "titleSplit": true
+    },
+    "backHomeCheck": {
+      "url": "/",
+      "triggersCount": 0,
+      "titleSplit": true
+    }
+  },
+  "reducedMotion": {
+    "matchesMedia": true,
+    "triggersCount": 0,
+    "htmlHasLenis": false,
+    "hasSplitLines": false,
+    "h1Opacity": "1"
+  },
+  "noJs": {
+    "hasInlineHidden": true
+  },
+  "overflows": [],
+  "consoleErrors": []
+}

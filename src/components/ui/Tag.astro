@@ -1,0 +1,76 @@
+---
+interface Props {
+  label?: string;
+  variant?: 'default' | 'accent' | 'outline';
+  size?: 'sm' | 'md';
+  class?: string;
+  [key: string]: any;
+}
+
+const {
+  label,
+  variant = 'default',
+  size = 'md',
+  class: className = '',
+  ...rest
+} = Astro.props;
+---
+
+<span
+  class:list={[
+    'tag',
+    `tag--${variant}`,
+    `tag--${size}`,
+    className,
+  ]}
+  {...rest}
+>
+  {label ? label : <slot />}
+</span>
+
+<style>
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-body);
+    font-weight: 500;
+    line-height: 1.2;
+    border-radius: var(--radius-pill);
+    max-width: 100%;
+    white-space: normal;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  /* Tailles */
+  .tag--sm {
+    padding: 3px 8px;
+    font-size: 0.7rem;
+  }
+
+  .tag--md {
+    padding: 5px 12px;
+    font-size: var(--fs-meta);
+  }
+
+  /* Variantes */
+  .tag--default {
+    background-color: var(--color-surface-muted);
+    color: var(--color-text-muted);
+    border: 1px solid var(--color-border);
+  }
+
+  .tag--accent {
+    background-color: var(--color-accent-soft);
+    color: var(--color-accent-hover);
+    border: 1px solid transparent;
+  }
+
+  .tag--outline {
+    background-color: transparent;
+    color: var(--color-text-muted);
+    border: 1px solid var(--color-border-strong);
+  }
+</style>

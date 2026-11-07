@@ -1,0 +1,183 @@
+/* ==========================================================================
+   STYLES GLOBAUX — AZIZ STUDIO (Phase 2)
+   Architecture CSS native & Design System
+   ========================================================================== */
+
+/* Polices auto-hébergées via Fontsource */
+@import '@fontsource/instrument-serif/400.css';
+@import '@fontsource/instrument-serif/400-italic.css';
+@import '@fontsource/geist-sans/400.css';
+@import '@fontsource/geist-sans/500.css';
+@import '@fontsource/geist-sans/600.css';
+@import '@fontsource/geist-sans/700.css';
+
+/* Import des Tokens & du Reset */
+@import './tokens.css';
+@import './reset.css';
+
+/* --------------------------------------------------------------------------
+   Accessibilité
+   -------------------------------------------------------------------------- */
+
+/* Skip Link */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: var(--space-5);
+  background-color: var(--color-accent);
+  color: var(--color-on-accent);
+  padding: var(--space-3) var(--space-5);
+  font-weight: 500;
+  font-size: var(--fs-small);
+  border-radius: var(--radius-sm);
+  z-index: 9999;
+  text-decoration: none;
+  transition: top var(--transition-fast);
+}
+
+.skip-link:focus {
+  top: var(--space-4);
+}
+
+/* Indicateur de focus clavier accessible (WCAG 2.2 AA) */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+/* Masquage accessible aux lecteurs d'écran */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Typographie globale
+   -------------------------------------------------------------------------- */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  color: var(--color-text);
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+.display-title {
+  font-family: var(--font-display);
+  font-size: var(--fs-display);
+  line-height: var(--lh-display);
+  letter-spacing: -0.02em;
+}
+
+h1 {
+  font-size: var(--fs-h1);
+  line-height: var(--lh-h1);
+}
+
+h2 {
+  font-size: var(--fs-h2);
+  line-height: var(--lh-h2);
+}
+
+h3 {
+  font-size: var(--fs-h3);
+  line-height: var(--lh-h3);
+}
+
+h4 {
+  font-size: var(--fs-subheading);
+  line-height: var(--lh-tight);
+}
+
+p {
+  color: var(--color-text);
+  max-width: var(--text-max-width);
+}
+
+/* --------------------------------------------------------------------------
+   Conteneur & Mise en page
+   -------------------------------------------------------------------------- */
+.container {
+  width: min(100% - 2 * var(--page-gutter), var(--container-max));
+  margin-inline: auto;
+}
+
+.section {
+  padding-block: var(--section-space);
+}
+
+/* Grille éditoriale 12 colonnes */
+.grid-12 {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--space-5);
+}
+
+/* Grilles modulaires standard */
+.grid {
+  display: grid;
+  gap: var(--space-6);
+}
+
+.grid--2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.grid--3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.grid--4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+/* Responsive tablette (≤1023px) : passage à 8 colonnes ou réductions équilibrées */
+@media (max-width: 1023px) {
+  .grid-12 {
+    grid-template-columns: repeat(8, 1fr);
+    gap: var(--space-4);
+  }
+
+  .grid--4,
+  .grid--3 {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-5);
+  }
+}
+
+/* Responsive mobile (≤767px) : passage à colonne unique ou 4 colonnes compactes */
+@media (max-width: 767px) {
+  .grid-12 {
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-3);
+  }
+
+  .grid--4,
+  .grid--3,
+  .grid--2 {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Utilitaires texte
+   -------------------------------------------------------------------------- */
+.text-muted {
+  color: var(--color-text-muted);
+}
+
+.text-subtle {
+  color: var(--color-text-subtle);
+}
+
+.text-accent {
+  color: var(--color-accent);
+}
