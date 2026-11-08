@@ -92,7 +92,7 @@ export const detailedProjects: DetailedProject[] = [
       "J'ai pris en charge l'intégralité de la démarche : définition du positionnement conceptuel, élaboration de l'arborescence, structuration de l'expérience utilisateur, formalisation de la charte graphique et prototypage des écrans clés.",
     learnings:
       "Ce projet m'a permis de comprendre comment utiliser l'IA comme un accélérateur de réflexion et de maquettage, tout en conservant une rigueur absolue sur la cohérence des espacements, la hiérarchie visuelle et la simplicité d'usage.",
-    prevId: "elikia-sante",
+    prevId: "renovo-couleur",
     nextId: "molato-commerce",
   },
   {
@@ -279,6 +279,130 @@ export const detailedProjects: DetailedProject[] = [
     learnings:
       "Confirmation de l'excellence de Gutenberg pour des projets durables et légers, et apprentissage approfondi de la conception de sites de santé où la clarté prime sur l'artifice visuel.",
     prevId: "maison-kiala",
+    nextId: "atre-steakhouse",
+  },
+  {
+    id: "atre-steakhouse",
+    title: "Âtre Steakhouse",
+    category: "Restauration",
+    nature: "Projet personnel",
+    methodOrTech: "Conception assistée par l'IA",
+    period: "Projet personnel — 2024",
+    role: "Conception, direction visuelle & prototypage",
+    summary:
+      "Une vitrine gourmande et chaleureuse pour un restaurant de grillades haut de gamme, mêlant ambiance feutrée et parcours de réservation épuré.",
+    technologies: ["Design d'interface", "Assistance IA", "Prototypage"],
+    imageSrc: "/images/atre-steakhouse.webp",
+    fullImageSrc: "/images/atre-steakhouse.webp",
+    imageAlt: "Aperçu de l'interface conçue pour le projet Âtre Steakhouse",
+    context:
+      "Âtre Steakhouse est un projet personnel né de l'envie d'explorer l'univers de la restauration gastronomique à travers le web. L'objectif était de concevoir une expérience digitale qui retranscrit fidèlement l'atmosphère chaleureuse d'un restaurant de grillades premium, en utilisant l'intelligence artificielle comme outil d'assistance à la conception.",
+    objectives: [
+      "Transmettre une ambiance chaleureuse, conviviale et gourmande dès la première visite.",
+      "Mettre en valeur le menu et les spécialités avec une présentation appétissante et lisible.",
+      "Concevoir un parcours de réservation simple et sans friction.",
+      "Assurer une expérience fluide et engageante sur mobile comme sur grand écran.",
+    ],
+    artDirection: {
+      palette: ["#1C1917", "#92400E", "#D6D3D1", "#FBF9F5", "#B45309"],
+      paletteDescription:
+        "Tons chauds inspirés des braises et du bois noble : brun profond, ambre doré et crème chaleureux pour une atmosphère intimiste.",
+      typography:
+        "Typographie serif élégante pour les titres évoquant la tradition, associée à une sans-serif contemporaine pour les descriptions et le menu.",
+      ambiance:
+        "Restaurant de caractère où le bois, le cuir et la lumière tamisée créent une enveloppe sensorielle rassurante.",
+    },
+    structure: [
+      {
+        title: "Accueil & Ambiance",
+        description:
+          "Accroche visuelle immersive avec photographies d'ambiance, horaires et bouton de réservation immédiat.",
+      },
+      {
+        title: "La Carte & Spécialités",
+        description:
+          "Présentation structurée du menu par catégories : entrées, grillades, accompagnements et desserts.",
+      },
+      {
+        title: "Notre Histoire",
+        description:
+          "Récit de la philosophie du restaurant, de la sélection des viandes et du savoir-faire des grilleurs.",
+      },
+      {
+        title: "Réservation & Accès",
+        description:
+          "Formulaire de réservation simplifié avec choix de la date, nombre de couverts et plan d'accès.",
+      },
+    ],
+    technologiesDetails:
+      "Conception réalisée avec l'assistance d'outils d'intelligence artificielle pour la réflexion éditoriale et la structuration des contenus, combinée à un travail de maquettage et de composition d'interfaces.",
+    contribution:
+      "Définition du positionnement visuel, élaboration de l'arborescence, conception des écrans clés et prototypage de l'expérience utilisateur complète.",
+    learnings:
+      "Ce projet m'a permis d'approfondir la conception d'interfaces orientées restauration, où l'atmosphère visuelle et la lisibilité du menu sont déterminantes pour l'expérience du visiteur.",
+    prevId: "elikia-sante",
+    nextId: "renovo-couleur",
+  },
+  {
+    id: "renovo-couleur",
+    title: "Renovo Couleur",
+    category: "Peinture & Rénovation",
+    nature: "Projet personnel",
+    methodOrTech: "WordPress & Elementor",
+    period: "Projet personnel — 2024",
+    role: "Direction visuelle & intégration WordPress",
+    summary:
+      "Un site vitrine professionnel et rassurant pour une entreprise de peinture, rénovation et décoration intérieure.",
+    technologies: ["WordPress", "Elementor", "Direction visuelle"],
+    imageSrc: "/images/renovo-couleur.webp",
+    fullImageSrc: "/images/renovo-couleur.webp",
+    imageAlt: "Aperçu de l'interface conçue pour le projet Renovo Couleur",
+    context:
+      "Renovo Couleur est un projet personnel conçu pour démontrer comment WordPress et Elementor peuvent servir à créer un site vitrine efficace pour une entreprise artisanale. L'enjeu était de concevoir une présentation claire et professionnelle qui inspire confiance aux particuliers et professionnels à la recherche de services de peinture et rénovation.",
+    objectives: [
+      "Inspirer confiance et professionnalisme grâce à une présentation soignée des réalisations.",
+      "Présenter clairement les services proposés : peinture intérieure, extérieure, décoration et rénovation.",
+      "Faciliter la prise de contact et la demande de devis en ligne.",
+      "Offrir un site rapide et lisible sur mobile pour les artisans et leurs clients.",
+    ],
+    artDirection: {
+      palette: ["#1E293B", "#475569", "#E2E8F0", "#F8FAFC", "#2563EB"],
+      paletteDescription:
+        "Palette sobre et professionnelle : bleu confiance, gris ardoise et blanc lumineux, évoquant la propreté et la rigueur du travail bien fait.",
+      typography:
+        "Typographie sans-serif claire et moderne, privilégiant la lisibilité et le sérieux professionnel.",
+      ambiance:
+        "Propreté, précision et transformation : des espaces avant/après qui parlent d'eux-mêmes.",
+    },
+    structure: [
+      {
+        title: "Accueil & Présentation",
+        description:
+          "Mise en avant de l'expertise, des valeurs de l'entreprise et des services phares.",
+      },
+      {
+        title: "Nos Services",
+        description:
+          "Pages détaillées pour chaque prestation : peinture intérieure, ravalement, décoration et rénovation complète.",
+      },
+      {
+        title: "Réalisations",
+        description:
+          "Galerie de projets terminés avec visuels avant/après et descriptions des interventions.",
+      },
+      {
+        title: "Devis & Contact",
+        description:
+          "Formulaire de demande de devis structuré par type de prestation, avec coordonnées et zone d'intervention.",
+      },
+    ],
+    technologiesDetails:
+      "Site réalisé sous WordPress avec Elementor pour la mise en page, complété par du CSS personnalisé pour les détails visuels. Optimisation des images et structure allégée pour un chargement rapide.",
+    contribution:
+      "Création intégrale du site : architecture des contenus, choix de la direction artistique, intégration Elementor, rédaction des textes et adaptation responsive.",
+    learnings:
+      "Confirmation qu'Elementor permet de produire des sites vitrines professionnels de qualité lorsqu'il est utilisé avec rigueur, en évitant la surcharge de widgets et en soignant chaque détail typographique.",
+    prevId: "atre-steakhouse",
     nextId: "boulevard-hotel",
   },
 ];

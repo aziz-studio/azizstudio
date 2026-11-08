@@ -171,6 +171,28 @@ export const siteConfig: SiteConfig = {
       imageSrc: "/images/elikia-sante-thumb.webp",
       imageAlt: "Aperçu de l'interface conçue pour le projet Elikia Santé",
     },
+    {
+      id: "atre-steakhouse",
+      title: "Âtre Steakhouse",
+      category: "Restauration",
+      nature: "Projet personnel",
+      methodOrTech: "Conception assistée par l'IA",
+      description: "Une vitrine gourmande et chaleureuse pour un restaurant de grillades.",
+      technologies: ["Design d'interface", "Assistance IA", "Prototypage"],
+      imageSrc: "/images/atre-steakhouse.webp",
+      imageAlt: "Aperçu de l'interface conçue pour le projet Âtre Steakhouse",
+    },
+    {
+      id: "renovo-couleur",
+      title: "Renovo Couleur",
+      category: "Peinture & Rénovation",
+      nature: "Projet personnel",
+      methodOrTech: "WordPress & Elementor",
+      description: "Un site vitrine professionnel pour une entreprise de peinture et rénovation.",
+      technologies: ["WordPress", "Elementor", "Direction visuelle"],
+      imageSrc: "/images/renovo-couleur.webp",
+      imageAlt: "Aperçu de l'interface conçue pour le projet Renovo Couleur",
+    },
   ],
 
   approach: [

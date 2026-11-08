@@ -40,11 +40,14 @@ const { stats = siteConfig.stats } = Astro.props;
     margin: 0;
     padding: 0;
     list-style: none;
+    justify-items: center;
+    text-align: center;
   }
 
   .stats-bar__item {
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: var(--space-2);
     padding-left: var(--space-5);
     border-left: 2px solid var(--color-accent);
@@ -63,5 +66,6 @@ const { stats = siteConfig.stats } = Astro.props;
     line-height: 1.4;
     color: var(--color-text-muted);
     max-width: 24ch;
+    text-align: center;
   }
 </style>
