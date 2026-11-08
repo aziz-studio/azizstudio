@@ -68,6 +68,9 @@ export function animateTitles(container: HTMLElement = document.body): TextAnima
 
       splits.push(split);
 
+      // Rendre le titre visible (masqué en CSS pour éviter le flash)
+      gsap.set(el, { visibility: 'visible' });
+
       gsap.from(split.lines, {
         yPercent: 105,
         opacity: 0,

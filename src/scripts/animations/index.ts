@@ -1,5 +1,5 @@
 import { registerGsapPlugins, gsap, ScrollTrigger, prefersReducedMotion } from './gsap';
-import { initLenis, updateLenis, setupAnchorScrolling, scrollToHashIfPresent } from './lenis';
+import { initLenis, updateLenis, destroyLenis, setupAnchorScrolling, scrollToHashIfPresent } from './lenis';
 import { animateTitles, type TextAnimationContext } from './text';
 import { initScrollAnimations, type ScrollAnimationContext } from './scroll';
 
@@ -101,6 +101,7 @@ document.addEventListener('astro:page-load', () => {
 // Événement déclenché juste avant le remplacement du DOM de l'ancienne page
 document.addEventListener('astro:before-swap', () => {
   cleanupPageAnimations();
+  destroyLenis();
 });
 
 // Gestion du redimensionnement de la fenêtre avec temporisation (debounce)
