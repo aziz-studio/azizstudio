@@ -8,7 +8,7 @@ import { detailedProjects } from '../../data/projects';
 import { siteConfig } from '../../config/site';
 
 function getFilterCategory(id: string): string {
-  if (id === 'maison-kiala') return 'elementor';
+  if (id === 'maison-kiala' || id === 'renovo-couleur') return 'elementor';
   if (id === 'elikia-sante') return 'gutenberg';
   return 'ai';
 }
@@ -51,7 +51,7 @@ function getFilterCategory(id: string): string {
               aria-pressed="true"
             >
               <span>Tous</span>
-              <span class="filter-btn__count">4</span>
+              <span class="filter-btn__count">6</span>
             </button>
             <button
               type="button"
@@ -60,7 +60,7 @@ function getFilterCategory(id: string): string {
               aria-pressed="false"
             >
               <span>Assistance IA</span>
-              <span class="filter-btn__count">2</span>
+              <span class="filter-btn__count">3</span>
             </button>
             <button
               type="button"
@@ -69,7 +69,7 @@ function getFilterCategory(id: string): string {
               aria-pressed="false"
             >
               <span>WordPress &amp; Elementor</span>
-              <span class="filter-btn__count">1</span>
+              <span class="filter-btn__count">2</span>
             </button>
             <button
               type="button"
@@ -83,7 +83,7 @@ function getFilterCategory(id: string): string {
           </div>
         </div>
         <div id="filter-live-status" class="sr-only" role="status" aria-live="polite">
-          4 projets affichés
+          6 projets affichés
         </div>
       </div>
     </Container>
@@ -96,7 +96,7 @@ function getFilterCategory(id: string): string {
   <!-- Grille des projets filtrable -->
   <section class="section section--projects-list">
     <Container>
-      <div class="grid grid--2 projects-catalog-grid" id="projects-grid">
+      <div class="grid grid--3 projects-catalog-grid" id="projects-grid">
         {
           detailedProjects.map((project) => (
             <div
@@ -120,16 +120,6 @@ function getFilterCategory(id: string): string {
         }
       </div>
 
-      <!-- Emplacements réservés pour les futures réalisations -->
-      <div class="projects-future-card">
-        <div class="future-card__icon" aria-hidden="true">✦</div>
-        <div class="future-card__body">
-          <h2 class="future-card__title">Deux futurs projets en cours d'exploration</h2>
-          <p class="future-card__text text-muted">
-            Deux nouveaux espaces de travail sont réservés pour de prochaines réalisations. Ces études viendront enrichir ce portfolio au fur et à mesure de mon perfectionnement technique et de mes recherches conceptuelles.
-          </p>
-        </div>
-      </div>
     </Container>
   </section>
 
@@ -378,44 +368,6 @@ function getFilterCategory(id: string): string {
     flex-direction: column;
   }
 
-  .projects-future-card {
-    display: flex;
-    gap: var(--space-4);
-    align-items: flex-start;
-    background-color: var(--color-surface-muted);
-    border: 1px dashed var(--color-border-strong);
-    border-radius: var(--radius-md);
-    padding: var(--space-6);
-  }
-
-  .future-card__icon {
-    font-size: 1.5rem;
-    color: var(--color-accent);
-    line-height: 1;
-    flex-shrink: 0;
-    padding-top: 2px;
-  }
-
-  .future-card__body {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-2);
-  }
-
-  .future-card__title {
-    font-family: var(--font-display);
-    font-size: var(--fs-h3);
-    line-height: var(--lh-h3);
-    color: var(--color-text);
-    margin: 0;
-  }
-
-  .future-card__text {
-    font-size: var(--fs-small);
-    line-height: 1.6;
-    margin: 0;
-  }
-
   /* --------------------------------------------------------------------------
      Section Méthode & Note
      -------------------------------------------------------------------------- */
@@ -519,9 +471,5 @@ function getFilterCategory(id: string): string {
       padding: 8px 14px;
     }
 
-    .projects-future-card {
-      flex-direction: column;
-      padding: var(--space-5);
-    }
   }
 </style>
