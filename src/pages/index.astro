@@ -6,6 +6,8 @@ import Button from '../components/ui/Button.astro';
 import Divider from '../components/ui/Divider.astro';
 import Tag from '../components/ui/Tag.astro';
 import ProjectCard from '../components/ui/ProjectCard.astro';
+import StatsBar from '../components/ui/StatsBar.astro';
+import Services from '../components/ui/Services.astro';
 import { siteConfig } from '../config/site';
 ---
 
@@ -60,9 +62,8 @@ import { siteConfig } from '../config/site';
     </Container>
   </section>
 
-  <Container>
-    <Divider />
-  </Container>
+  <!-- Chiffres clés (configurables dans src/config/site.ts) -->
+  <StatsBar />
 
   <!-- =========================================================================
        SECTION 2 — Présentation courte
@@ -126,6 +127,29 @@ import { siteConfig } from '../config/site';
       <div class="projects-catalog-link">
         <Button variant="secondary" href="/projets" size="md" showArrow>
           Consulter le catalogue des projets
+        </Button>
+      </div>
+    </Container>
+  </section>
+
+  <Container>
+    <Divider />
+  </Container>
+
+  <!-- =========================================================================
+       Prestations (contenu dans src/config/site.ts)
+       ========================================================================= -->
+  <section id="prestations" class="section section--services">
+    <Container>
+      <SectionHeading
+        eyebrow="Prestations"
+        title="Ce que je peux réaliser pour vous."
+        description="Trois façons de travailler ensemble, selon votre besoin."
+      />
+      <Services />
+      <div class="services-cta">
+        <Button variant="secondary" href="/contact" size="md" showArrow>
+          Parler de mon projet
         </Button>
       </div>
     </Container>
@@ -724,6 +748,10 @@ import { siteConfig } from '../config/site';
     margin: 0;
   }
 
+  .services-cta {
+    margin-top: var(--space-7);
+  }
+
   .cta-channels {
     margin-top: var(--space-2);
   }
@@ -732,15 +760,15 @@ import { siteConfig } from '../config/site';
     display: inline-flex;
     align-items: center;
     gap: var(--space-2);
-    color: #25d366;
+    color: #167a3c; /* vert WhatsApp assombri : contraste 4.7:1 sur le fond crème (WCAG AA) */
     font-size: var(--fs-base);
     font-weight: 500;
     text-decoration: none;
-    transition: opacity 0.2s ease;
+    transition: color 0.2s ease;
   }
 
   .cta-whatsapp-link:hover {
-    opacity: 0.8;
+    color: #0f6b35;
   }
 
   .cta-actions {

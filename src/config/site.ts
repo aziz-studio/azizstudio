@@ -27,6 +27,23 @@ export interface ApproachStep {
   description: string;
 }
 
+export interface ServiceItem {
+  number: string;
+  title: string;
+  description: string;
+  tags: string[];
+}
+
+export interface FaqItem {
+  question: string;
+  answer: string;
+}
+
+export interface StatItem {
+  value: string;
+  label: string;
+}
+
 export interface SkillGroup {
   title: string;
   description?: string;
@@ -53,6 +70,9 @@ export interface SiteConfig {
   projects: ProjectItem[];
   approach: ApproachStep[];
   skills: SkillGroup[];
+  stats: StatItem[];
+  services: ServiceItem[];
+  faq: FaqItem[];
 }
 
 export const siteConfig: SiteConfig = {
@@ -204,6 +224,83 @@ export const siteConfig: SiteConfig = {
       description: "Outils et architectures modernes en cours d'apprentissage actif.",
       items: ["Astro"],
       note: "Technologie explorée pour des architectures rapides et légères.",
+    },
+  ],
+
+  // Chiffres clés affichés sous le hero (composant StatsBar).
+  // À modifier librement : supprime l'entrée ou toute la liste pour masquer la barre.
+  stats: [
+    { value: "8 ans", label: "de pratique du web (WordPress, HTML/CSS)" },
+    { value: "30+", label: "projets personnels réalisés" },
+    { value: "99+", label: "score Performances sur PageSpeed Insights" },
+  ],
+
+  // Prestations affichées sur l'accueil (composant Services).
+  services: [
+    {
+      number: "01",
+      title: "Sites vitrines WordPress",
+      description:
+        "Un site clair pour présenter une activité, un savoir-faire ou une entreprise : structure des pages, mise en page soignée avec Elementor ou Gutenberg, lecture agréable sur mobile.",
+      tags: ["WordPress", "Elementor", "Gutenberg"],
+    },
+    {
+      number: "02",
+      title: "Boutiques en ligne WooCommerce",
+      description:
+        "Une boutique pour présenter et vendre des produits : catalogue lisible, fiches produits claires et parcours d'achat simple.",
+      tags: ["WooCommerce", "E-commerce", "Parcours utilisateur"],
+    },
+    {
+      number: "03",
+      title: "Sites rapides avec Astro",
+      description:
+        "Un site léger et très rapide pour une présentation soignée, avec une architecture simple à faire évoluer. Ce portfolio est lui-même réalisé avec Astro.",
+      tags: ["Astro", "Performance", "Architecture légère"],
+    },
+  ],
+
+  // Questions fréquentes affichées sur la page Contact (composant Faq).
+  faq: [
+    {
+      question: "Quels types de sites réalises-tu ?",
+      answer:
+        "Des sites vitrines et de présentation avec WordPress (Elementor, Gutenberg, Divi), des boutiques en ligne avec WooCommerce et des sites rapides et légers avec Astro. Chaque projet est pensé selon le besoin, pas selon un modèle imposé.",
+    },
+    {
+      question: "Comment se déroule un projet ?",
+      answer:
+        "En quatre étapes : comprendre le besoin, structurer les contenus, concevoir l'identité et les interfaces, puis réaliser le site. Chaque étape est validée avec vous avant de passer à la suivante.",
+    },
+    {
+      question: "Quels sont les délais ?",
+      answer:
+        "Ils dépendent de la taille du projet et de la rapidité avec laquelle les contenus (textes, images) sont fournis. À titre indicatif, comptez environ 2 à 3 semaines pour un site vitrine simple ; une boutique en ligne ou un projet sur mesure demande davantage. Un délai précis est donné après un premier échange.",
+    },
+    {
+      question: "Combien coûte un site ?",
+      answer:
+        "Chaque projet est différent : je prépare un devis après un premier échange gratuit, par WhatsApp ou par e-mail. Je préfère proposer un prix clair et adapté à votre besoin plutôt qu'une grille standard.",
+    },
+    {
+      question: "Comment se passe le paiement ?",
+      answer:
+        "Les modalités de paiement sont discutées ensemble avant le démarrage du projet, puis précisées dans le devis. L'objectif est de trouver un accord clair et adapté à votre situation.",
+    },
+    {
+      question: "Puis-je demander des modifications ?",
+      answer:
+        "Oui. Deux séries de retours sont prévues pendant la conception, et une courte période de corrections est assurée après la mise en ligne.",
+    },
+    {
+      question: "Peux-tu t'occuper de l'hébergement et du nom de domaine ?",
+      answer:
+        "Oui, si vous le souhaitez, je peux m'en occuper : choix de l'hébergement, configuration du nom de domaine et mise en ligne. Vous pouvez aussi garder la main en gérant vous-même votre compte. Nous en discutons ensemble selon votre préférence.",
+    },
+    {
+      question: "Utilises-tu l'intelligence artificielle ?",
+      answer:
+        "Oui, comme outil d'assistance pour réfléchir, structurer et gagner du temps. Les choix de conception, la direction visuelle et la vérification du résultat restent les miens.",
     },
   ],
 };

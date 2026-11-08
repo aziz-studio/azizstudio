@@ -68,7 +68,7 @@ const hasContactInfo = siteConfig.email || siteConfig.phone || siteConfig.whatsa
                 </a>
               </p>
             )}
-            {siteConfig.phone && (
+            {siteConfig.phone && siteConfig.phone !== siteConfig.whatsapp && (
               <p class="footer__contact-item">
                 <a
                   href={`tel:${siteConfig.phone}`}

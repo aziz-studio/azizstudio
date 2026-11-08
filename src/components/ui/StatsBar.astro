@@ -1,0 +1,67 @@
+---
+import Container from './Container.astro';
+import { siteConfig, type StatItem } from '../../config/site';
+
+interface Props {
+  stats?: StatItem[];
+}
+
+const { stats = siteConfig.stats } = Astro.props;
+---
+
+{
+  stats.length > 0 && (
+    <section class="stats-bar" aria-label="Chiffres clés">
+      <Container>
+        <ul class="stats-bar__list">
+          {stats.map((stat) => (
+            <li class="stats-bar__item">
+              <strong class="stats-bar__value">{stat.value}</strong>
+              <span class="stats-bar__label">{stat.label}</span>
+            </li>
+          ))}
+        </ul>
+      </Container>
+    </section>
+  )
+}
+
+<style>
+  .stats-bar {
+    background-color: var(--color-surface-muted);
+    border-block: var(--border-default);
+    padding-block: clamp(2rem, 4vw, 3.5rem);
+  }
+
+  .stats-bar__list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+    gap: var(--space-6);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .stats-bar__item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    padding-left: var(--space-5);
+    border-left: 2px solid var(--color-accent);
+  }
+
+  .stats-bar__value {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(2.5rem, 5vw, 3.75rem);
+    line-height: 1;
+    color: var(--color-text);
+  }
+
+  .stats-bar__label {
+    font-size: var(--fs-small);
+    line-height: 1.4;
+    color: var(--color-text-muted);
+    max-width: 24ch;
+  }
+</style>
