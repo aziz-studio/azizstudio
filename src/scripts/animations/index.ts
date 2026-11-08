@@ -1,5 +1,5 @@
 import { registerGsapPlugins, gsap, ScrollTrigger, prefersReducedMotion } from './gsap';
-import { initLenis, updateLenis, setupAnchorScrolling } from './lenis';
+import { initLenis, updateLenis, setupAnchorScrolling, scrollToHashIfPresent } from './lenis';
 import { animateTitles, type TextAnimationContext } from './text';
 import { initScrollAnimations, type ScrollAnimationContext } from './scroll';
 
@@ -45,6 +45,10 @@ export function setupPageAnimations() {
       ScrollTrigger.refresh();
       updateLenis();
       setupAnchorScrolling();
+
+      // Gestion du hash dans l'URL après une View Transition
+      // (ex: navigation depuis /a-propos vers /#approche)
+      scrollToHashIfPresent();
     });
   };
 

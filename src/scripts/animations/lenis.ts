@@ -93,3 +93,29 @@ export function destroyLenis() {
 export function getLenis(): Lenis | null {
   return lenisInstance;
 }
+
+/**
+ * Après une View Transition, si l'URL contient un hash (#approche, #competences…),
+ * Lenis scrolle vers la section correspondante.
+ */
+export function scrollToHashIfPresent() {
+  const hash = window.location.hash;
+  if (!hash || hash === '#') return;
+
+  const target = document.querySelector(hash);
+  if (!target) return;
+
+  if (lenisInstance) {
+    // Petit délai pour laisser le DOM se stabiliser après la transition
+    setTimeout(() => {
+      lenisInstance!.scrollTo(target as HTMLElement, {
+        offset: -70,
+        duration: 1.2,
+        easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      });
+    }, 100);
+  } else {
+    // Fallback sans Lenis (reduced-motion)
+    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+}
