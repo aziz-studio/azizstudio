@@ -1,5 +1,6 @@
 ---
 import Tag from './Tag.astro';
+import Icon from './Icon.astro';
 
 interface Props {
   title: string;
@@ -50,7 +51,7 @@ const {
       ) : (
         <div class="project-card__placeholder" aria-hidden="true">
           <div class="placeholder-graphic">
-            <span class="placeholder-icon">✦</span>
+            <span class="placeholder-icon"><Icon name="star-four" size={18} /></span>
             <span class="placeholder-title">{title}</span>
             <span class="placeholder-sub">Illustration de concept</span>
           </div>
@@ -108,7 +109,7 @@ const {
         <div class="project-card__footer">
           <a href={href} class="project-card__cta">
             <span>Découvrir l'étude</span>
-            <span class="project-card__arrow" aria-hidden="true">→</span>
+            <span class="project-card__arrow" aria-hidden="true"><Icon name="arrow-right" size={14} /></span>
           </a>
         </div>
       )

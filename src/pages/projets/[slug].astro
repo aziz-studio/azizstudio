@@ -4,6 +4,7 @@ import Container from '../../components/ui/Container.astro';
 import Button from '../../components/ui/Button.astro';
 import Divider from '../../components/ui/Divider.astro';
 import Tag from '../../components/ui/Tag.astro';
+import Icon from '../../components/ui/Icon.astro';
 import { detailedProjects, type DetailedProject, getProjectById } from '../../data/projects';
 import { siteConfig } from '../../config/site';
 
@@ -116,7 +117,7 @@ const nextProject = getProjectById(project.nextId);
 
           <div class="visual-card__canvas" aria-hidden="true">
             <div class="canvas-monogram">
-              <span class="canvas-monogram__mark">✦</span>
+              <span class="canvas-monogram__mark"><Icon name="star-four" size={20} /></span>
               <span class="canvas-monogram__title">{project.title}</span>
               <span class="canvas-monogram__cat">{project.category} · {project.methodOrTech}</span>
             </div>
@@ -265,7 +266,7 @@ const nextProject = getProjectById(project.nextId);
         <div class="project-nav-bar">
           {prevProject ? (
             <a href={`/projets/${prevProject.id}`} class="project-nav-link project-nav-link--prev">
-              <span class="project-nav-link__sub" aria-hidden="true">← Projet précédent</span>
+              <span class="project-nav-link__sub" aria-hidden="true"><Icon name="arrow-left" size={14} /> Projet précédent</span>
               <span class="project-nav-link__title">{prevProject.title}</span>
             </a>
           ) : (
@@ -280,7 +281,7 @@ const nextProject = getProjectById(project.nextId);
 
           {nextProject ? (
             <a href={`/projets/${nextProject.id}`} class="project-nav-link project-nav-link--next">
-              <span class="project-nav-link__sub" aria-hidden="true">Projet suivant →</span>
+              <span class="project-nav-link__sub" aria-hidden="true">Projet suivant <Icon name="arrow-right" size={14} /></span>
               <span class="project-nav-link__title">{nextProject.title}</span>
             </a>
           ) : (

@@ -1,4 +1,6 @@
 ---
+import Icon from './Icon.astro';
+
 interface Props {
   href: string;
   external?: boolean;
@@ -28,7 +30,7 @@ const isExternal = external || href.startsWith('http') || href.startsWith('//');
   <span class="text-link__label"><slot /></span>
   {isExternal && (
     <span class="text-link__icon" aria-hidden="true">
-      ↗
+      <Icon name="arrow-up-right" size={12} />
     </span>
   )}
 </a>

@@ -2,6 +2,7 @@
 import { siteConfig } from '../../config/site';
 import Divider from '../ui/Divider.astro';
 import SocialIcon from '../ui/SocialIcon.astro';
+import Icon from '../ui/Icon.astro';
 
 const currentYear = new Date().getFullYear();
 const hasSocials = siteConfig.socials && siteConfig.socials.length > 0;
@@ -99,7 +100,7 @@ const hasContactInfo = siteConfig.email || siteConfig.phone || siteConfig.whatsa
                 >
                   <SocialIcon name={social.icon as any} size={15} />
                   <span>{social.label}</span>
-                  <span class="footer__ext-icon" aria-hidden="true">↗</span>
+                  <span class="footer__ext-icon" aria-hidden="true"><Icon name="arrow-up-right" size={13} /></span>
                 </a>
               </li>
             ))}

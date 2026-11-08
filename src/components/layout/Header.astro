@@ -1,5 +1,6 @@
 ---
 import { siteConfig } from '../../config/site';
+import Icon from '../ui/Icon.astro';
 ---
 
 <header class="header" id="site-header">
@@ -28,7 +29,7 @@ import { siteConfig } from '../../config/site';
     <div class="header__actions">
       <a href="/contact" class="header__cta">
         <span>Échanger</span>
-        <span class="header__cta-arrow" aria-hidden="true">→</span>
+        <span class="header__cta-arrow" aria-hidden="true"><Icon name="arrow-right" size={14} /></span>
       </a>
 
       <!-- Bouton Toggle Menu Mobile -->
@@ -63,7 +64,7 @@ import { siteConfig } from '../../config/site';
               <li class="mobile-nav__item">
                 <a href={item.href} class="mobile-nav__link">
                   <span>{item.label}</span>
-                  <span class="mobile-nav__link-arrow" aria-hidden="true">→</span>
+                  <span class="mobile-nav__link-arrow" aria-hidden="true"><Icon name="arrow-right" size={14} /></span>
                 </a>
               </li>
             ))
@@ -74,7 +75,7 @@ import { siteConfig } from '../../config/site';
       <div class="mobile-nav__footer">
         <a href="/contact" class="mobile-nav__cta">
           <span>Démarrer un échange</span>
-          <span aria-hidden="true">→</span>
+          <span aria-hidden="true"><Icon name="arrow-right" size={14} /></span>
         </a>
         <p class="mobile-nav__tagline text-muted">
           {siteConfig.name} — {siteConfig.tagline}

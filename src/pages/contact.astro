@@ -6,6 +6,7 @@ import Divider from '../components/ui/Divider.astro';
 import SocialIcon from '../components/ui/SocialIcon.astro';
 import SectionHeading from '../components/ui/SectionHeading.astro';
 import Faq from '../components/ui/Faq.astro';
+import Icon from '../components/ui/Icon.astro';
 import { siteConfig } from '../config/site';
 
 // Clé d'envoi Web3Forms configurée via variable d'environnement publique
@@ -181,7 +182,7 @@ const web3FormsKey = import.meta.env.PUBLIC_WEB3FORMS_KEY || '';
                   class="btn btn--primary btn--lg"
                 >
                   <span id="btn-text">Envoyer mon message</span>
-                  <span id="btn-arrow" class="btn__arrow" aria-hidden="true">→</span>
+                  <span id="btn-arrow" class="btn__arrow" aria-hidden="true"><Icon name="arrow-right" size={14} /></span>
                 </button>
               </div>
 
@@ -246,7 +247,7 @@ const web3FormsKey = import.meta.env.PUBLIC_WEB3FORMS_KEY || '';
             >
               <SocialIcon name="whatsapp" size={20} />
               <span>Ouvrir la conversation</span>
-              <span class="btn__arrow" aria-hidden="true">→</span>
+              <span class="btn__arrow" aria-hidden="true"><Icon name="arrow-right" size={14} /></span>
             </a>
             <div class="info-card__status-indicator">
               <span class="status-dot status-dot--online"></span>
@@ -302,7 +303,7 @@ const web3FormsKey = import.meta.env.PUBLIC_WEB3FORMS_KEY || '';
                 >
                   <SocialIcon name={social.icon as any} size={18} />
                   <span class="social-link-card__label">{social.label}</span>
-                  <span class="social-link-card__arrow" aria-hidden="true">↗</span>
+                  <span class="social-link-card__arrow" aria-hidden="true"><Icon name="arrow-up-right" size={14} /></span>
                 </a>
               ))}
             </div>
@@ -313,21 +314,21 @@ const web3FormsKey = import.meta.env.PUBLIC_WEB3FORMS_KEY || '';
             <h3 class="info-card__title">Types de collaborations bienvenues</h3>
             <ul class="collab-list">
               <li class="collab-item">
-                <span class="collab-item__bullet" aria-hidden="true">✦</span>
+                <span class="collab-item__bullet" aria-hidden="true"><Icon name="star-four" size={14} /></span>
                 <div class="collab-item__content">
                   <strong>Sites vitrines d'indépendants &amp; activités</strong>
                   <p class="text-muted">Des espaces clairs, chaleureux et agréables à parcourir pour valoriser votre savoir-faire.</p>
                 </div>
               </li>
               <li class="collab-item">
-                <span class="collab-item__bullet" aria-hidden="true">✦</span>
+                <span class="collab-item__bullet" aria-hidden="true"><Icon name="star-four" size={14} /></span>
                 <div class="collab-item__content">
                   <strong>Refontes WordPress soignées</strong>
                   <p class="text-muted">Nettoyage, transition vers l'éditeur de blocs Gutenberg et optimisation de la lisibilité mobile.</p>
                 </div>
               </li>
               <li class="collab-item">
-                <span class="collab-item__bullet" aria-hidden="true">✦</span>
+                <span class="collab-item__bullet" aria-hidden="true"><Icon name="star-four" size={14} /></span>
                 <div class="collab-item__content">
                   <strong>Conception &amp; ergonomie d'interfaces</strong>
                   <p class="text-muted">Structuration des contenus, arborescence et mise en page réfléchie pour vos utilisateurs.</p>
