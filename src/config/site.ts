@@ -79,7 +79,7 @@ export const siteConfig: SiteConfig = {
   name: "Aziz Studio",
   tagline: "Concepteur web indépendant",
   description:
-    "Découvrez Aziz Studio, l'univers d'Aziz, concepteur web indépendant. Projets personnels, conception d'interfaces et création de sites web.",
+    "Découvrez Aziz Studio, l'univers d'Aziz, concepteur web indépendant. Sites de démonstration, conception d'interfaces et création de sites web.",
 
   // Coordonnées officielles
   url: "", // À renseigner lors de la configuration du domaine Cloudflare Pages (PUBLIC_SITE_URL)
@@ -131,7 +131,7 @@ export const siteConfig: SiteConfig = {
       id: "boulevard-hotel",
       title: "Boulevard Hôtel",
       category: "Hôtellerie",
-      nature: "Projet personnel",
+      nature: "Site de démonstration",
       methodOrTech: "Conception assistée par l'IA",
       description: "Un univers hôtelier présenté à travers une expérience web.",
       technologies: ["Design d'interface", "Assistance IA", "Prototypage"],
@@ -142,7 +142,7 @@ export const siteConfig: SiteConfig = {
       id: "molato-commerce",
       title: "Molato Commerce",
       category: "Commerce en ligne",
-      nature: "Projet personnel",
+      nature: "Site de démonstration",
       methodOrTech: "Conception assistée par l'IA",
       description: "Une expérience digitale pensée autour de la découverte des produits.",
       technologies: ["E-commerce", "Assistance IA", "Parcours utilisateur"],
@@ -153,7 +153,7 @@ export const siteConfig: SiteConfig = {
       id: "maison-kiala",
       title: "Maison Kiala",
       category: "Architecture & design intérieur",
-      nature: "Projet personnel",
+      nature: "Site de démonstration",
       methodOrTech: "WordPress & Elementor",
       description: "Un univers visuel consacré à l'aménagement et au design intérieur.",
       technologies: ["WordPress", "Elementor", "Direction visuelle"],
@@ -164,7 +164,7 @@ export const siteConfig: SiteConfig = {
       id: "elikia-sante",
       title: "Elikia Santé",
       category: "Santé",
-      nature: "Projet personnel",
+      nature: "Site de démonstration",
       methodOrTech: "WordPress & Gutenberg",
       description: "Une présentation claire et structurée pour une clinique dentaire.",
       technologies: ["WordPress", "Gutenberg", "Mise en page éditoriale"],
@@ -175,7 +175,7 @@ export const siteConfig: SiteConfig = {
       id: "atre-steakhouse",
       title: "Âtre Steakhouse",
       category: "Restauration",
-      nature: "Projet personnel",
+      nature: "Site de démonstration",
       methodOrTech: "Conception assistée par l'IA",
       description: "Une vitrine gourmande et chaleureuse pour un restaurant de grillades.",
       technologies: ["Design d'interface", "Assistance IA", "Prototypage"],
@@ -186,7 +186,7 @@ export const siteConfig: SiteConfig = {
       id: "renovo-couleur",
       title: "Renovo Couleur",
       category: "Peinture & Rénovation",
-      nature: "Projet personnel",
+      nature: "Site de démonstration",
       methodOrTech: "WordPress & Elementor",
       description: "Un site vitrine professionnel pour une entreprise de peinture et rénovation.",
       technologies: ["WordPress", "Elementor", "Direction visuelle"],
@@ -253,7 +253,7 @@ export const siteConfig: SiteConfig = {
   // À modifier librement : supprime l'entrée ou toute la liste pour masquer la barre.
   stats: [
     { value: "8 ans", label: "de pratique du web (WordPress, HTML/CSS)" },
-    { value: "30+", label: "projets personnels réalisés" },
+    { value: "30+", label: "sites de démonstration réalisés" },
     { value: "99+", label: "score Performances sur PageSpeed Insights" },
   ],
 

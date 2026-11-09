@@ -22,6 +22,11 @@ interface Props {
 const { project } = Astro.props;
 const prevProject = getProjectById(project.prevId);
 const nextProject = getProjectById(project.nextId);
+const hasLiveUrl = typeof project.liveUrl === 'string' && project.liveUrl.length > 0;
+const hasGallery = project.gallery && project.gallery.length > 0;
+const hasConclusion = typeof project.conclusion === 'string' && project.conclusion.length > 0;
+const scrollDuration = project.scrollDuration || '16s';
+const displayUrl = project.displayUrl || (hasLiveUrl ? project.liveUrl!.replace(/^https?:\/\//, '').replace(/\/$/, '') : `${project.id}.demo`);
 ---
 
 <BaseLayout
@@ -61,6 +66,31 @@ const nextProject = getProjectById(project.nextId);
             {project.summary}
           </p>
 
+          <!-- Bouton Voir la démo (externe si hébergé, sinon ancre vers l'aperçu) -->
+          <div class="project-hero__cta">
+            {hasLiveUrl ? (
+              <Button
+                variant="primary"
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                size="md"
+                showArrow
+              >
+                Voir la démo
+              </Button>
+            ) : (
+              <Button
+                variant="primary"
+                href="#apercu"
+                size="md"
+                showArrow
+              >
+                Voir la démo
+              </Button>
+            )}
+          </div>
+
           <!-- Fiche d'identité synthétique -->
           <div class="project-meta-grid">
             <div class="project-meta-item">
@@ -88,32 +118,81 @@ const nextProject = getProjectById(project.nextId);
       <Divider />
     </Container>
 
-    <!-- Visualisation schématique & Palette -->
-    <section class="section section--visual">
+    <!-- Aperçu interactif unique dans mockup navigateur -->
+    <section class="section section--mockup" id="apercu">
+      <Container>
+        <div class="mockup-header-block">
+          <div>
+            <span class="section-eyebrow">Aperçu interactif</span>
+            <h2 class="section-title">Présentation complète du site</h2>
+          </div>
+          <span class="mockup-hint text-subtle" aria-hidden="true">
+            <span class="mockup-hint__desktop">Survolez avec la souris ou utilisez le clavier pour faire défiler la page</span>
+            <span class="mockup-hint__touch">Faites défiler le contenu au doigt à l'intérieur du cadre</span>
+          </span>
+        </div>
+
+        <div
+          class="browser-mockup"
+          tabindex="0"
+          role="region"
+          aria-label={`Aperçu interactif du site ${project.title}`}
+          style={`--scroll-duration: ${scrollDuration};`}
+        >
+          <div class="browser-mockup__bar">
+            <div class="browser-mockup__dots" aria-hidden="true">
+              <span class="browser-mockup__dot browser-mockup__dot--red"></span>
+              <span class="browser-mockup__dot browser-mockup__dot--yellow"></span>
+              <span class="browser-mockup__dot browser-mockup__dot--green"></span>
+            </div>
+            <div class="browser-mockup__url">
+              <span class="browser-mockup__url-lock" aria-hidden="true">🔒</span>
+              <span class="browser-mockup__url-text">{displayUrl}</span>
+            </div>
+            {hasLiveUrl && (
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="browser-mockup__external-btn"
+                title="Ouvrir dans un nouvel onglet"
+                aria-label="Ouvrir le site en ligne dans un nouvel onglet"
+              >
+                <Icon name="arrow-up-right" size={14} />
+              </a>
+            )}
+          </div>
+
+          <div class="browser-mockup__viewport">
+            {project.fullImageSrc && (
+              <img
+                src={project.fullImageSrc}
+                alt={`Capture d'écran complète de l'interface conçue pour le site de démonstration ${project.title}`}
+                class:list={[
+                  'browser-mockup__image',
+                  { 'browser-mockup__image--scrollable': project.hasScrollAnimation },
+                ]}
+                width="1920"
+                height="1080"
+                loading="eager"
+                decoding="async"
+              />
+            )}
+          </div>
+        </div>
+      </Container>
+    </section>
+
+    <!-- Direction artistique & Palette -->
+    <section class="section section--palette">
       <Container>
         <div class="project-visual-card">
           <div class="visual-card__header">
-            <span class="visual-card__label">Composition conceptuelle &amp; Direction artistique</span>
+            <span class="visual-card__label">Direction artistique &amp; Harmonie chromatique</span>
             <span class="visual-card__notice text-subtle">
-              {project.fullImageSrc ? "Capture réelle du projet personnel" : "Représentation schématique — Zéro capture fictive"}
+              {project.nature} — Identité visuelle
             </span>
           </div>
-
-          {
-            project.fullImageSrc && (
-              <div class="visual-card__preview">
-                <img
-                  src={project.fullImageSrc}
-                  alt={`Aperçu de l'interface conçue pour le projet ${project.title}`}
-                  class="visual-card__image"
-                  width="1200"
-                  height="700"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
-            )
-          }
 
           <div class="visual-card__canvas" aria-hidden="true">
             <div class="canvas-monogram">
@@ -168,7 +247,7 @@ const nextProject = getProjectById(project.nextId);
       <Divider />
     </Container>
 
-    <!-- Direction artistique -->
+    <!-- Direction artistique détaillée -->
     <section class="section section--art-direction">
       <Container>
         <div class="art-direction-block">
@@ -259,6 +338,84 @@ const nextProject = getProjectById(project.nextId);
     <Container>
       <Divider />
     </Container>
+
+    <!-- Galerie complémentaire (si disponible) -->
+    {hasGallery && (
+      <section class="section section--gallery" id="galerie">
+        <Container>
+          <span class="section-eyebrow">Galerie du projet</span>
+          <h2 class="section-title">Pages, sections et détails</h2>
+          <div class="gallery-grid">
+            {project.gallery!.map((img) => (
+              <figure class="gallery-item">
+                <div class="gallery-item__frame">
+                  <img
+                    src={img.src}
+                    alt={img.alt}
+                    class="gallery-item__image"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+                {img.caption && (
+                  <figcaption class="gallery-item__caption text-subtle">{img.caption}</figcaption>
+                )}
+              </figure>
+            ))}
+          </div>
+        </Container>
+      </section>
+    )}
+
+    {hasGallery && (
+      <Container>
+        <Divider />
+      </Container>
+    )}
+
+    <!-- Conclusion de l'étude de cas -->
+    {hasConclusion && (
+      <section class="section section--conclusion">
+        <Container width="narrow">
+          <div class="conclusion-block">
+            <span class="section-eyebrow">Conclusion</span>
+            <h2 class="section-title">Ce qu'il faut retenir de ce projet.</h2>
+            <p class="conclusion-block__text text-muted">
+              {project.conclusion}
+            </p>
+            <div class="conclusion-block__action">
+              {hasLiveUrl ? (
+                <Button
+                  variant="secondary"
+                  href={project.liveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  size="md"
+                  showArrow
+                >
+                  Voir la démo en ligne
+                </Button>
+              ) : (
+                <Button
+                  variant="secondary"
+                  href="#apercu"
+                  size="md"
+                  showArrow
+                >
+                  Revoir la démo
+                </Button>
+              )}
+            </div>
+          </div>
+        </Container>
+      </section>
+    )}
+
+    {hasConclusion && (
+      <Container>
+        <Divider />
+      </Container>
+    )}
 
     <!-- Navigation inter-projets -->
     <section class="section section--project-nav">
@@ -383,6 +540,13 @@ const nextProject = getProjectById(project.nextId);
     margin: 0;
   }
 
+  .project-hero__cta {
+    padding-top: var(--space-1);
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
   .project-meta-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -413,6 +577,193 @@ const nextProject = getProjectById(project.nextId);
   }
 
   /* --------------------------------------------------------------------------
+     Browser Mockup & Interactive Scrolling (Unique Preview)
+     -------------------------------------------------------------------------- */
+  .mockup-header-block {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: var(--space-4);
+    gap: var(--space-4);
+    flex-wrap: wrap;
+  }
+
+  .mockup-hint {
+    font-size: var(--fs-meta);
+    text-align: right;
+  }
+
+  .mockup-hint__touch {
+    display: none;
+  }
+
+  .browser-mockup {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background-color: var(--color-surface);
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.08);
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  }
+
+  .browser-mockup:hover,
+  .browser-mockup:focus-within {
+    border-color: var(--color-border-strong);
+    box-shadow: 0 18px 48px rgba(0, 0, 0, 0.12);
+  }
+
+  .browser-mockup:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+  }
+
+  .browser-mockup__bar {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: 12px var(--space-4);
+    background-color: var(--color-surface-muted);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .browser-mockup__dots {
+    display: flex;
+    gap: 7px;
+    flex-shrink: 0;
+  }
+
+  .browser-mockup__dot {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  .browser-mockup__dot--red {
+    background-color: #ef4444;
+  }
+
+  .browser-mockup__dot--yellow {
+    background-color: #f59e0b;
+  }
+
+  .browser-mockup__dot--green {
+    background-color: #10b981;
+  }
+
+  .browser-mockup__url {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    padding: 5px 12px;
+    min-width: 0;
+  }
+
+  .browser-mockup__url-lock {
+    font-size: 0.75rem;
+    line-height: 1;
+    opacity: 0.6;
+  }
+
+  .browser-mockup__url-text {
+    font-size: var(--fs-meta);
+    color: var(--color-text-subtle);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-family: monospace;
+    letter-spacing: 0.02em;
+  }
+
+  .browser-mockup__external-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text-muted);
+    padding: 4px;
+    border-radius: var(--radius-sm);
+    transition: color var(--transition-fast), background-color var(--transition-fast);
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+
+  .browser-mockup__external-btn:hover {
+    color: var(--color-accent);
+    background-color: var(--color-surface);
+  }
+
+  /* Viewport de l'aperçu : 800px de hauteur sur desktop */
+  .browser-mockup__viewport {
+    width: 100%;
+    height: 800px;
+    overflow: hidden;
+    position: relative;
+    background-color: var(--color-surface-muted);
+  }
+
+  /* Image de l'aperçu avec translation fluide et progressive */
+  .browser-mockup__image {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    object-position: top center;
+    transform: translateY(0);
+    /* Transition de retour au repos : progressive et élégante */
+    transition: transform 5s cubic-bezier(0.25, 1, 0.5, 1);
+    will-change: transform;
+  }
+
+  /* Défilement au survol et au focus clavier : 15s à 18s linéaire */
+  .browser-mockup:hover .browser-mockup__image--scrollable,
+  .browser-mockup:focus-within .browser-mockup__image--scrollable {
+    transform: translateY(calc(-100% + 800px));
+    transition: transform var(--scroll-duration, 16s) linear;
+  }
+
+  /* Respect de prefers-reduced-motion */
+  @media (prefers-reduced-motion: reduce) {
+    .browser-mockup__viewport {
+      height: 700px;
+      overflow-y: auto;
+    }
+    .browser-mockup__image,
+    .browser-mockup:hover .browser-mockup__image--scrollable,
+    .browser-mockup:focus-within .browser-mockup__image--scrollable {
+      transition: none !important;
+      transform: none !important;
+    }
+  }
+
+  /* Adaptation mobile & écrans tactiles : défilement au doigt naturel */
+  @media (hover: none), (max-width: 768px) {
+    .mockup-hint__desktop {
+      display: none;
+    }
+    .mockup-hint__touch {
+      display: inline;
+    }
+
+    .browser-mockup__viewport {
+      height: 520px;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      scroll-behavior: smooth;
+    }
+
+    .browser-mockup__image,
+    .browser-mockup:hover .browser-mockup__image--scrollable,
+    .browser-mockup:focus-within .browser-mockup__image--scrollable {
+      transition: none !important;
+      transform: none !important;
+    }
+  }
+
+  /* --------------------------------------------------------------------------
      Visual Card & Palette
      -------------------------------------------------------------------------- */
   .project-visual-card {
@@ -437,28 +788,6 @@ const nextProject = getProjectById(project.nextId);
     text-transform: uppercase;
     letter-spacing: 0.06em;
     color: var(--color-text-muted);
-  }
-
-  .visual-card__preview {
-    width: 100%;
-    max-height: 520px;
-    overflow: hidden;
-    border-bottom: 1px solid var(--color-border);
-    background-color: var(--color-surface-muted);
-  }
-
-  .visual-card__image {
-    width: 100%;
-    height: 100%;
-    max-height: 520px;
-    object-fit: cover;
-    object-position: top center;
-    display: block;
-    transition: transform var(--transition-slow);
-  }
-
-  .project-visual-card:hover .visual-card__image {
-    transform: scale(1.01);
   }
 
   .visual-card__canvas {
@@ -600,7 +929,7 @@ const nextProject = getProjectById(project.nextId);
   }
 
   /* --------------------------------------------------------------------------
-     Direction artistique
+     Direction artistique détaillée
      -------------------------------------------------------------------------- */
   .art-details-grid {
     display: grid;
@@ -734,6 +1063,71 @@ const nextProject = getProjectById(project.nextId);
   }
 
   /* --------------------------------------------------------------------------
+     Gallery
+     -------------------------------------------------------------------------- */
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-5);
+    margin-top: var(--space-5);
+  }
+
+  .gallery-item {
+    margin: 0;
+  }
+
+  .gallery-item__frame {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background-color: var(--color-surface-muted);
+  }
+
+  .gallery-item__image {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform var(--transition-slow);
+  }
+
+  .gallery-item__frame:hover .gallery-item__image {
+    transform: scale(1.02);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .gallery-item__frame:hover .gallery-item__image {
+      transform: none;
+    }
+  }
+
+  .gallery-item__caption {
+    font-size: var(--fs-meta);
+    text-align: center;
+    padding-top: var(--space-2);
+  }
+
+  /* --------------------------------------------------------------------------
+     Conclusion
+     -------------------------------------------------------------------------- */
+  .conclusion-block {
+    max-width: 720px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .conclusion-block__text {
+    font-size: var(--fs-body);
+    line-height: 1.8;
+    margin: 0;
+  }
+
+  .conclusion-block__action {
+    padding-top: var(--space-5);
+    display: flex;
+    justify-content: center;
+  }
+
+  /* --------------------------------------------------------------------------
      Navigation inter-projets
      -------------------------------------------------------------------------- */
   .project-nav-bar {
@@ -830,6 +1224,10 @@ const nextProject = getProjectById(project.nextId);
     .structure-timeline {
       grid-template-columns: 1fr;
     }
+
+    .gallery-grid {
+      grid-template-columns: 1fr;
+    }
   }
 
   @media (max-width: 639px) {
@@ -854,6 +1252,24 @@ const nextProject = getProjectById(project.nextId);
     }
 
     .project-nav-link--next {
+      text-align: left;
+    }
+
+    .browser-mockup__dots {
+      display: none;
+    }
+
+    .browser-mockup__bar {
+      padding: 8px var(--space-3);
+    }
+
+    .mockup-header-block {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-1);
+    }
+
+    .mockup-hint {
       text-align: left;
     }
   }
