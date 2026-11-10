@@ -512,22 +512,23 @@ const web3FormsKey = import.meta.env.PUBLIC_WEB3FORMS_KEY || '';
 
         const data = await response.json().catch(() => null);
 
-        submitBtn.disabled = false;
-        submitBtn.classList.remove('is-loading');
-        if (btnText) btnText.textContent = 'Envoyer mon message';
-        if (statusSending) statusSending.style.display = 'none';
-
         if (response.ok && data && data.success) {
-          // ÉTAT 2 : Succès (uniquement sur confirmation réelle de Web3Forms)
+          // ÉTAT 2 : Succès confirmé par l'API Web3Forms -> Redirection vers /merci
           if (statusSuccess) statusSuccess.style.display = 'flex';
           form.reset();
+          window.location.href = '/merci';
         } else {
-          // ÉTAT 3 : Erreur retournée par l'API
+          // ÉTAT 3 : Erreur retournée par l'API -> Maintien sur la page contact avec données conservées
+          submitBtn.disabled = false;
+          submitBtn.classList.remove('is-loading');
+          if (btnText) btnText.textContent = 'Envoyer mon message';
+          if (statusSending) statusSending.style.display = 'none';
+
           const apiMsg = data && data.message ? data.message : "Le service d'envoi a retourné une erreur.";
           if (statusError) statusError.style.display = 'flex';
           if (errorTitle) errorTitle.textContent = "Erreur lors de l'envoi";
           if (errorDesc) {
-            errorDesc.textContent = `${apiMsg}. Veuillez réessayer ou me contacter directement via WhatsApp ou par e-mail.`;
+            errorDesc.textContent = `${apiMsg}. Veuillez vérifier vos informations et réessayer, ou me contacter directement via WhatsApp ou par e-mail.`;
           }
         }
       } catch (err) {

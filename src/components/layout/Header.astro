@@ -5,9 +5,16 @@ import Icon from '../ui/Icon.astro';
 
 <header class="header" id="site-header">
   <div class="container header__inner">
-    <a href="/" class="header__brand">
-      <span class="header__logo-mark" aria-hidden="true">A</span>
-      <span class="header__logo-text">{siteConfig.name}</span>
+    <a href="/" class="header__brand" aria-label="Aziz Studio — Retour à l'accueil">
+      <img
+        src="/images/aziz-studio-logo.svg"
+        alt="Aziz Studio"
+        width="155"
+        height="32"
+        class="header__logo"
+        loading="eager"
+        decoding="async"
+      />
     </a>
 
     <!-- Navigation Desktop -->
@@ -174,31 +181,16 @@ import Icon from '../ui/Icon.astro';
   .header__brand {
     display: inline-flex;
     align-items: center;
-    gap: var(--space-2);
     text-decoration: none;
     color: var(--color-text);
   }
 
-  .header__logo-mark {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 32px;
+  .header__logo {
+    display: block;
     height: 32px;
-    background-color: var(--color-text);
-    color: var(--color-on-accent);
-    font-family: var(--font-display);
-    font-size: 1.25rem;
-    font-weight: 700;
-    border-radius: var(--radius-sm);
-    line-height: 1;
-  }
-
-  .header__logo-text {
-    font-family: var(--font-display);
-    font-size: 1.4rem;
-    letter-spacing: -0.01em;
-    color: var(--color-text);
+    width: auto;
+    max-width: 160px;
+    object-fit: contain;
   }
 
   /* Navigation Desktop */
@@ -447,6 +439,13 @@ import Icon from '../ui/Icon.astro';
 
     .mobile-nav {
       display: block;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .header__logo {
+      height: 28px;
+      max-width: 140px;
     }
   }
 </style>

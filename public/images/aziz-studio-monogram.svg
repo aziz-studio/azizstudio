@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">Monogramme AS — Aziz Studio</title>
+  <desc id="desc">Monogramme AS crème sur fond charbon avec un arc terracotta.</desc>
+  <rect width="512" height="512" rx="54" fill="#24221F"/>
+  <text x="90" y="350" fill="#FAF8F5" font-family="Instrument Serif, Georgia, serif" font-size="300" font-weight="400" letter-spacing="-28">A</text>
+  <text x="230" y="350" fill="#FAF8F5" font-family="Instrument Serif, Georgia, serif" font-size="300" font-weight="400" letter-spacing="-28">S</text>
+  <path d="M70 326 C155 215 292 211 430 280" fill="none" stroke="#995843" stroke-width="13" stroke-linecap="round"/>
+</svg>
