@@ -7,6 +7,8 @@ const routes = [
   { path: '/projets/molato-commerce', priority: '0.8', changefreq: 'monthly' },
   { path: '/projets/maison-kiala', priority: '0.8', changefreq: 'monthly' },
   { path: '/projets/elikia-sante', priority: '0.8', changefreq: 'monthly' },
+  { path: '/projets/atre-steakhouse', priority: '0.8', changefreq: 'monthly' },
+  { path: '/projets/renovo-couleur', priority: '0.8', changefreq: 'monthly' },
   { path: '/a-propos', priority: '0.8', changefreq: 'monthly' },
   { path: '/contact', priority: '0.8', changefreq: 'monthly' },
 ];
